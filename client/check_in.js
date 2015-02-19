@@ -6,7 +6,11 @@ Template.checkIn.helpers({
 
 Template.checkIn.events({
   'click .check-in-button': function(e) {
-    var place = $(e.target).text();
+    var place = $(e.target).attr("id");
+    if (place == '-') {
+      place = '';
+    }
+
     getSelectedPeople().forEach(function(person){
       People.update({_id: person._id}, {$set: {place: place}});
     });

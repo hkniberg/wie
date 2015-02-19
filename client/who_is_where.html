@@ -1,6 +1,6 @@
 <template name="whoIsWhere">
   {{#each populatedPlaceNames}}
-    <div><b>{{this}}</b></div>
+    <h3>{{placeName}}</h3>
     {{#each peopleAt this}}
       {{>person}}
     {{/each}}
@@ -9,5 +9,5 @@
 </template>
 
 <template name="person">
-  <div class="person {{personClass}}">{{name}}</div>
+  <div class="btn btn-default person {{personClass}}">{{name}}</div>
 </template>

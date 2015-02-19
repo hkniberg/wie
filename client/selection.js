@@ -9,7 +9,7 @@ select = function(person) {
 deselect = function(person) {  
   var oldSelection = Session.get('selectedPeople');
   var newSelection = _.filter(oldSelection, function(selectedPerson){
-    selectedPerson.name === person.name
+    return selectedPerson.name !== person.name
   });
   Session.set('selectedPeople', newSelection);  
 };
@@ -29,3 +29,7 @@ isSelected = function(person) {
 clearSelection = function() {
   Session.set('selectedPeople', []);
 };
+
+hasSelection = function() {
+  return getSelectedPeople().length > 0;
+}

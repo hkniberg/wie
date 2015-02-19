@@ -1,5 +1,6 @@
 <template name="checkIn">
   {{#each allPlaces}}
-    <div><button class="check-in-button">{{name}}</button></div>
+    <div><button type="button" class="check-in-button btn btn-default" id="{{name}}">{{name}}</button></div>
   {{/each}}
+    <div><button type="button" class="check-in-button btn btn-default" id="-">(dunno where)</button></div>
 </template>

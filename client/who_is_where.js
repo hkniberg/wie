@@ -5,8 +5,15 @@ Template.whoIsWhere.helpers({
   
   populatedPlaceNames: function() {
     var people = People.find().fetch();
-    var places = _.chain(people).pluck('place').uniq().without('').value().sort();
-    return places;
+    var placeNames = _.chain(people).pluck('place').uniq().value().sort();
+    if (placeNames[0] == "") {
+      placeNames = placeNames.slice(1).concat('');
+    }
+    return placeNames;
+  },
+  
+  placeName: function() {
+    return this == "" ? "(dunno where)" : this;
   },
   
   peopleAt: function(place) {
@@ -17,7 +24,7 @@ Template.whoIsWhere.helpers({
 
 Template.person.helpers({
   personClass: function() {
-    return isSelected(this) ? 'bg-primary' : '';
+    return isSelected(this) ? 'btn-success' : '';
   }
   
 });
