@@ -21,11 +21,18 @@ if (People.find().count() === 0) {
     place: '',
     time: new Date(now - 60 * 60 * 1000)
   });
+  People.insert({
+    name: 'Sam',
+    place: '',
+    time: new Date(now - 100 * 60 * 1000)
+  });
   
   Places.insert({
-    name: 'cabin'
+    name: 'cabin',
+    icon: 'cabin.png'
   });
   Places.insert({
-    name: 'slope'
+    name: 'slope',
+    icon: 'ski.png'
   });
 }

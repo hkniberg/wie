@@ -4,7 +4,12 @@ Template.admin.helpers({
   },
   'people': function() {
     return People.find({}, {sort: {name: 1}});
-  }  
+  },
+  'icons': function() {
+    return [
+      'beer.png', 'cabin.png', 'car.png', 'food.png', 'question.png', 'ski.png'
+    ];
+  }
 });
 
 Template.admin.events({
@@ -15,6 +20,11 @@ Template.admin.events({
     var newPlaceName = newPlaceField.val();
     newPlaceName = newPlaceName.trim();
     
+    var icon = $('#add-place-form input[type=radio]:checked').val();
+    if (!icon) {
+      icon = '';
+    }    
+        
     if (!newPlaceName) {
       return;
     }
@@ -26,7 +36,9 @@ Template.admin.events({
       return;
     }
     
-    Places.insert({name: newPlaceName});
+    Places.insert(
+      {name: newPlaceName, icon: icon}
+    );
     newPlaceField.val('');
     
   },
@@ -35,7 +47,19 @@ Template.admin.events({
     e.preventDefault();
     
     var placeId = $(e.target).find('[id=placeToRemove]').val();
+    var place = Places.findOne({_id: placeId});
+    console.log("place #" + placeId + " is " + place);
+    console.log(place);
+    
+    People.find().forEach(function(person) {
+      console.log("Found person: " + person.name + ". Person.place = " + person.place + ", place.name = " + place.name);
+      if (person.place == place.name) {
+        console.log("Updating his place");
+        People.update({_id: person._id}, {$set: {place: ''}});
+      }
+    });
     Places.remove({_id: placeId});
+    
   },
   
   'submit #add-person-form': function(e) {
@@ -58,7 +82,8 @@ Template.admin.events({
     
     People.insert({
       name: newPersonName,
-      place: ''
+      place: '',
+      time: new Date()
     });
     newPersonField.val('');
     

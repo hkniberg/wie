@@ -1,6 +1,21 @@
 <template name="checkIn">
-  {{#each allPlaces}}
-    <div><button type="button" class="check-in-button btn btn-default" id="{{name}}">{{name}}</button></div>
-  {{/each}}
-    <div><button type="button" class="check-in-button btn btn-default" id="-">(dunno where)</button></div>
+  <h3>{{checkInLabel}}</h3>
+  
+  <div class="row">
+    <div class="btn-group-vertical" role="group">
+      {{#each allPlaces}}
+        <button type="button" class="check-in-button btn btn-default" id="{{name}}">
+          <img class="icon" src="icons/{{icon}}">{{name}}
+        </button>
+      {{/each}} 
+      <button type="button" class="check-in-button btn btn-default" id="-">
+        <img class="icon" src="icons/{{icon}}">(dunno)
+      </button>   
+    </div>
+  </div>
+  
+  <div class="row">
+    <button type="button" class="btn btn-link" id="reset-selection-button">clear selection</button>
+  </div>
+  
 </template>

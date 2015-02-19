@@ -1,14 +1,24 @@
 <template name="admin">
   <div>
     <h3>Add place</h3>
-    <form id="add-place-form" class="form-inline">
+    <form id="add-place-form" >
       <div class="input-group">
-        <input type="text" class="form-control" id="newPlaceName" placeholder="Place name">
+        <input type="text" class="form-control" id="newPlaceName" placeholder="Place name">          
         <span class="input-group-btn">
           <button type="submit" class="btn btn-default">Add</button>
         </span>
       </div>
+    <div class="btn-group" data-toggle="buttons">
+      {{#each icons}}
+        <label class="btn btn-default">
+          <input type="radio" name="icon" value="{{this}}" autocomplete="off">
+          <img src="icons/{{this}}">
+        </label> 
+      {{/each}}
+    </div>        
     </form>
+
+      
   </div>
   
   <div>
