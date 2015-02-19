@@ -7,21 +7,46 @@
   
 <div class="container-fluid">
   
-<div class="row">
-  {{> main}}
-</div>
+  <div class="row">
+    {{> main}}
+  </div>
 
-<div class="row">
-  <div class="col-xs-12">
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAdmin">
-      Admin
-    </button>
-  
-    <div class="collapse well" id="collapseAdmin">
-      {{> admin}}
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel-group" id="accordion">
+          <div class="panel panel-default" id="panel1">
+            
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-target="#collapseOne" href="#collapseOne">
+                    Administrate Places
+                  </a>
+                </h4>
+              </div>
+              
+              <div id="collapseOne" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                      {{> adminPlaces}}
+                  </div>
+              </div>
+              
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-target="#collapseTwo" href="#collapseTwo">
+                    Administrate People
+                  </a>
+                </h4>
+              </div>              
+              
+              <div id="collapseTwo" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                      {{> adminPeople}}
+                  </div>
+              </div>
+          </div>
+        </div>  
     </div>
   </div>
-</div>
 
 </div>  
   

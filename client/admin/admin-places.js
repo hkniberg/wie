@@ -1,9 +1,6 @@
-Template.admin.helpers({
+Template.adminPlaces.helpers({
   'places': function() {
     return Places.find({}, {sort: {name: 1}});
-  },
-  'people': function() {
-    return People.find({}, {sort: {name: 1}});
   },
   'icons': function() {
     return [
@@ -12,7 +9,7 @@ Template.admin.helpers({
   }
 });
 
-Template.admin.events({
+Template.adminPlaces.events({
   'submit #add-place-form': function(e) {
     e.preventDefault();
     
@@ -41,6 +38,8 @@ Template.admin.events({
     );
     newPlaceField.val('');
     
+    Flash.success(1, "Added " + newPlaceName, 3000);
+    
   },
   
   'submit #remove-place-form': function(e) {
@@ -62,39 +61,6 @@ Template.admin.events({
     
   },
   
-  'submit #add-person-form': function(e) {
-    e.preventDefault();
-    
-    var newPersonField = $(e.target).find('[id=newPersonName]');
-    var newPersonName = newPersonField.val();
-    newPersonName = newPersonName.trim();
-    
-    if (!newPersonName) {
-      return;
-    }
-        
-    var duplicate = _.find(People.find().fetch(), function(existingPerson) {
-      return existingPerson.name.toLowerCase() === newPersonName.toLowerCase();
-    });
-    if (duplicate) {
-      return;
-    }
-    
-    People.insert({
-      name: newPersonName,
-      place: '',
-      time: new Date()
-    });
-    newPersonField.val('');
-    
-  },
-  
-  'submit #remove-person-form': function(e) {
-    e.preventDefault();
-    
-    var personId = $(e.target).find('[id=personToRemove]').val();
-    People.remove({_id: personId});
-  }  
   
   
 });

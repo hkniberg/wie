@@ -50,9 +50,12 @@ Template.person.helpers({
     var personTime = this.time;
     var now = currentTime.get();
     var ageMs = (now.getTime()) - personTime.getTime();
-    var ageSeconds = (ageMs + 1000) / 1000;
+    var ageSeconds = ageMs / 1000;
     var ageMinutes = Math.round(ageSeconds / 60);
     if (ageMinutes < 60) {
+      if (ageMinutes < 0) {
+        ageMinutes = 0;
+      }
       return "(" + ageMinutes + "m)";      
     }
     if (ageMinutes < 75) {

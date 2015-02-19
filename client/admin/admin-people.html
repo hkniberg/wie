@@ -1,0 +1,32 @@
+<template name="adminPeople">
+  
+  <div>
+    <h3>Add person</h3>
+    <form id="add-person-form" class="form-inline">
+      <div class="input-group">
+        <input type="text" class="form-control" id="newPersonName" placeholder="Person name">
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-default">Add</button>
+        </span>
+      </div>
+    </form>
+  </div>
+  
+  <div>
+    <h3>Remove person</h3>
+    <form id="remove-person-form" class="form-inline">
+      <div class="input-group">
+        <select class="form-control" id="personToRemove">
+          {{#each people}}
+            <option value="{{_id}}">{{name}}</option>
+          {{/each}}
+        </select>
+        
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-default">Remove</button>
+        </span>
+      </div>
+    </form>
+  </div>    
+  
+</template>

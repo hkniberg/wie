@@ -8,7 +8,8 @@ Template.main.helpers({
 currentTime = new ReactiveVar();
 currentTime.set(new Date());
 
+
 Meteor.setInterval(function() {
   var now = new Date();
   currentTime.set(now);
-}, 60000);
+}, 5000);
