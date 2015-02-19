@@ -1,0 +1,13 @@
+<template name="whoIsWhere">
+  {{#each populatedPlaceNames}}
+    <div><b>{{this}}</b></div>
+    {{#each peopleAt this}}
+      {{>person}}
+    {{/each}}
+    
+  {{/each}}  
+</template>
+
+<template name="person">
+  <div class="person {{personClass}}">{{name}}</div>
+</template>

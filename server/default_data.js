@@ -21,4 +21,11 @@ if (People.find().count() === 0) {
     place: '',
     time: new Date(now - 60 * 60 * 1000)
   });
+  
+  Places.insert({
+    name: 'cabin'
+  });
+  Places.insert({
+    name: 'slope'
+  });
 }
