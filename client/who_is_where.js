@@ -1,21 +1,18 @@
 Template.whoIsWhere.helpers({
+
  
-  areSomePeopleAtUnknownPlace: function() {
-    return People.find({place: ''}).count() > 0;
-  },
- 
-  places: function() {
-    return Places.find({}, {sort: {name: 1}});
+  placesToShow: function() {
+    var places = getAllPlacesAndUnknown();
+    var placesToShow = _.filter(places, function(place) {
+      var mongoPlaceName = getPlaceMongoName(place);
+      var result = People.find({place: mongoPlaceName}).count() > 0;
+      return result;      
+    });
+    return placesToShow;
   }
 });
 
 Template.place.helpers({
-  hasPeople: function() {
-    var placeName = this.name ? this.name : '';
-    
-    return People.find({place: placeName}).count() > 0;          
-  },
-  
   hasSelection: function() {
     return hasSelection();
   },
@@ -25,11 +22,8 @@ Template.place.helpers({
   },
   
   peopleAt: function(place) {
-    if (place) {
-      return People.find({place: place.name}, {sort: ['name']});      
-    } else {
-      return People.find({place: ''}, {sort: ['name']});            
-    }    
+    var placeMongoName = getPlaceMongoName(place);
+    return People.find({place: placeMongoName}, {sort: ['name']});      
   },
   
   name: function() {
@@ -52,10 +46,10 @@ Template.person.helpers({
     var ageMs = (now.getTime()) - personTime.getTime();
     var ageSeconds = ageMs / 1000;
     var ageMinutes = Math.round(ageSeconds / 60);
+    if (ageMinutes < 6) {
+      return "(now)"
+    }
     if (ageMinutes < 60) {
-      if (ageMinutes < 0) {
-        ageMinutes = 0;
-      }
       return "(" + ageMinutes + "m)";      
     }
     if (ageMinutes < 75) {

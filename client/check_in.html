@@ -4,13 +4,10 @@
   <div class="row">
     <div class="btn-group-vertical" role="group">
       {{#each allPlaces}}
-        <button type="button" class="check-in-button btn btn-default" id="{{name}}">
-          <img class="icon" src="icons/{{icon}}">{{name}}
+        <button type="button" class="check-in-button btn btn-default" id="{{_id}}">
+          {{>placeLabel}}
         </button>
       {{/each}} 
-      <button type="button" class="check-in-button btn btn-default" id="-">
-        <img class="icon" src="icons/{{icon}}">(dunno)
-      </button>   
     </div>
   </div>
   

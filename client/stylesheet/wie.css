@@ -1,6 +1,7 @@
 .icon {
   vertical-align: text-middle;
   margin-right: 5px;
+  pointer-events:none;
 }
 
 .time {

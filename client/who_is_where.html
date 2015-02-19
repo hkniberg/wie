@@ -1,18 +1,14 @@
   
 <template name="whoIsWhere">
-  {{#each places}}
+  {{#each placesToShow}}
     {{>place}}
   {{/each}} 
-  {{#if areSomePeopleAtUnknownPlace}} 
-    {{>place}}
-  {{/if}}
 </template>
 
 <template name="place">
-  {{#if hasPeople}}
     <div class="panel panel-info">
       <div class="panel-heading">
-        <div class="panel-title"><img class="icon" src="icons/{{icon}}">{{name}}</div>
+        <div class="panel-title">{{>placeLabel}}</div>
       </div>
       <div class="panel-body">
         {{#each peopleAt this}}
@@ -20,7 +16,6 @@
         {{/each}}
       </div>    
     </div>
-  {{/if}}
 </template>
 
 <template name="person">

@@ -1,6 +1,6 @@
 Template.checkIn.helpers({
   allPlaces: function() {
-    return Places.find({}, {sort: {name: 1}});
+    return getAllPlacesAndUnknown();
   },
   
   checkInLabel: function() {
@@ -15,22 +15,24 @@ Template.checkIn.helpers({
   },
   
   icon: function() {
-    console.log("this icon: " + this.icon);
-    console.log(this);
-    return this.icon ? this.icon : "question.png";
+    
+    //return this.icon ? "<img class='icon' src='icons/" + this.icon + "'>" : "";
   }
 });
 
 Template.checkIn.events({
   'click .check-in-button': function(e) {
-    var place = $(e.target).attr("id");
-    if (place == '-') {
-      place = '';
-    }
+    var placeId = $(e.target).attr("id");
+    var placeName;
+    if (placeId == '-') {
+      placeName = '';
+    } else {
+      placeName = Places.findOne({_id: placeId}).name;
+    }        
 
     getSelectedPeople().forEach(function(person){
       People.update({_id: person._id}, {$set: {
-        place: place,
+        place: placeName,
         time: new Date()
       }});
     });

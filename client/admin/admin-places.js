@@ -38,7 +38,7 @@ Template.adminPlaces.events({
     );
     newPlaceField.val('');
     
-    Flash.success(1, "Added " + newPlaceName, 3000);
+
     
   },
   
@@ -47,13 +47,9 @@ Template.adminPlaces.events({
     
     var placeId = $(e.target).find('[id=placeToRemove]').val();
     var place = Places.findOne({_id: placeId});
-    console.log("place #" + placeId + " is " + place);
-    console.log(place);
     
     People.find().forEach(function(person) {
-      console.log("Found person: " + person.name + ". Person.place = " + person.place + ", place.name = " + place.name);
       if (person.place == place.name) {
-        console.log("Updating his place");
         People.update({_id: person._id}, {$set: {place: ''}});
       }
     });
