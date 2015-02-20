@@ -13,7 +13,15 @@ var movePersonTo = function(person, placeId) {
 }
 
 
-Template.checkIn.helpers({
+Template.checkIn.helpers({ 
+  checkInButtonClass: function() {
+    return hasSelection() ? "" : "disabled";
+  },
+  
+  hasSelection: function() {
+    return hasSelection();
+  },
+
   allPlaces: function() {
     return getAllPlacesAndUnknown();
   },

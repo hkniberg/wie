@@ -8,7 +8,7 @@
         {{#each icons}}
           <label class="btn btn-default">
             <input type="radio" name="icon" value="{{this}}" autocomplete="off">
-            <img src="icons/{{this}}">
+            <img src="place-icons/{{this}}">
           </label> 
         {{/each}}
       </div>        
@@ -22,24 +22,28 @@
   <div>
     <h3>Rename place</h3>
     <form id="update-place-form">
+      <label for="placeToUpdate">Old name:</label>
       <select class="form-control" id="placeToUpdate">
         {{#each places}}
           <option value="{{_id}}">{{name}}</option>
         {{/each}}
       </select>
 
-      <input type="text" class="form-control" id="updatedPlaceName" placeholder="New name">          
+      <div class="form-group">
+        <label for="updatedPlaceName">New name:</label>
+        <input type="text" class="form-control" id="updatedPlaceName" value="{{selectedPlaceName}}" placeholder="New name">          
+      </div>
 
       <div class="btn-group" data-toggle="buttons">
         {{#each icons}}
-          <label class="btn btn-default">
-            <input type="radio" name="icon" value="{{this}}" autocomplete="off">
-            <img src="icons/{{this}}">
+          <label id="updateIconTo{{this}}" class="btn btn-default {{iconLabelActive}}">
+            <input id="updateTo{{this}}" type="radio" name="icon" value="{{this}}" {{iconChecked}}  autocomplete="off">
+            <img src="place-icons/{{this}}">
           </label> 
         {{/each}}
       </div>   
 
-      <button type="submit" data-loading-text="updating..." class="btn btn-primary">Rename</button>
+      <button type="submit" data-loading-text="updating..." class="btn btn-primary">Update</button>
       <span class="confirmation"></span>
 
     </form>    

@@ -1,0 +1,38 @@
+<template name="admin" >
+  <div class="col-xs-12" style="margin-top: 20px">
+    <div class="row">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default" id="panel1">
+          
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-target="#collapseOne" href="#collapseOne">
+                Administrate Places
+              </a>
+            </h4>
+          </div>
+          
+          <div id="collapseOne" class="panel-collapse collapse out">
+              <div class="panel-body">
+                  {{> adminPlaces}}
+              </div>
+          </div>
+          
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-target="#collapseTwo" href="#collapseTwo">
+                Administrate People
+              </a>
+            </h4>
+          </div>              
+          
+          <div id="collapseTwo" class="panel-collapse collapse out">
+              <div class="panel-body">
+                  {{> adminPeople}}
+              </div>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+</template>

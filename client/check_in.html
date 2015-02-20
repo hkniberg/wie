@@ -1,18 +1,32 @@
 <template name="checkIn">
   
   <div class="row">
-    <h3>{{checkInLabel}}</h3>
+    {{#if hasSelection}}    
+      <h3>{{checkInLabel}}</h3>
+    {{/if}}
+    {{#unless hasSelection}}    
+      <div class="instructions">
+        <h4>Click on yourself and whoever you are with.</h4>
+        <img src="ui-icons/arrow-left.png">
+        <h4>... then click below to update your location:</h4>
+        <img src="ui-icons/arrow-down.png">
+      </div>
+    {{/unless}}
+    
     <div class="btn-group-vertical" role="group">
       {{#each allPlaces}}
-        <button type="button" class="check-in-button btn btn-default" id="{{_id}}">
+        <button type="button" class="check-in-button btn btn-default {{checkInButtonClass}}" id="{{_id}}">
           {{>placeLabel}}
         </button>
       {{/each}} 
     </div>
   </div>
   
+  
+  {{#if hasSelection}}
   <div class="row">
     <button type="button" class="btn btn-link" id="reset-selection-button">clear selection</button>
   </div>
+  {{/if}}
   
 </template>

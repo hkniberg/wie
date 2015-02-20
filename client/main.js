@@ -1,9 +1,3 @@
-Template.main.helpers({
-  hasSelection: function() {
-    return hasSelection();
-  }  
-});
-
 currentTime = new ReactiveVar();
 currentTime.set(new Date());
 

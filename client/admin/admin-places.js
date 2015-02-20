@@ -1,3 +1,37 @@
+selectedPlaceToUpdate = new ReactiveVar();
+selectedPlaceToUpdate.set(getFirstPlace());
+
+
+getSelectedPlace = function() {
+  var selectedPlace = selectedPlaceToUpdate.get();
+  if (selectedPlace) {
+    return selectedPlace;
+  } else {
+    var firstPlace = getFirstPlace();
+    if (firstPlace) {
+      selectedPlaceToUpdate.set(firstPlace);
+      return firstPlace;
+    }
+  }
+  return null;
+}
+
+updatePlaceRenameField = function() {
+  var placeName = $('#placeToUpdate option:selected').text();
+  if (!placeName) {
+    placeName = getFirstPlace().name;
+  }
+  $('#updatedPlaceName').val(placeName);
+}
+
+updateSelectedIcon = function() {
+  var placeName = $('#placeToUpdate option:selected').text();
+  if (!placeName) {
+    placeName = getFirstPlace().name;
+  }
+  $('#updatedPlaceName').val(placeName);
+}
+
 
 
 Template.adminPlaces.helpers({
@@ -8,6 +42,41 @@ Template.adminPlaces.helpers({
     return [
       'beer.png', 'cabin.png', 'car.png', 'food.png', 'question.png', 'ski.png'
     ];
+  },
+  'selectedPlaceName': function() {
+    var selectedPlace = getSelectedPlace();
+    if (!selectedPlace || !selectedPlace.name) {
+      return "";
+    }
+    return selectedPlace.name;
+  },
+  
+  'iconChecked': function() {
+    var selectedPlace = getSelectedPlace();
+    if (!selectedPlace || !selectedPlace.icon) {
+      return "";
+    }
+    var icon = this;
+    
+    if (icon == selectedPlace.icon) {
+      return "checked";
+    } else {
+      return "";
+    }
+  },
+  
+  'iconLabelActive': function() {
+    var selectedPlace = getSelectedPlace();
+    if (!selectedPlace || !selectedPlace.icon) {
+      return "";
+    }
+    var icon = this;
+    
+    if (icon == selectedPlace.icon) {
+      return "active";
+    } else {
+      return "";
+    }  
   }
 });
 
@@ -37,6 +106,12 @@ Template.adminPlaces.events({
     });
   },
   
+  'change #placeToUpdate': function(e) {
+    var placeId = $('#placeToUpdate').val();
+    var place = placeId ? getPlace(placeId) : null;
+    selectedPlaceToUpdate.set(place);
+  },
+  
   'submit #update-place-form': function(e) {
     e.preventDefault();
     
@@ -56,8 +131,7 @@ Template.adminPlaces.events({
     button.button('loading');
     Meteor.call('updatePlace', placeId, updatedPlaceName, icon, function(err, result) {
       if (!showError(err)) {
-        confirm(e, 'Updated it!');
-        updatedPlaceField.val('');        
+        confirm(e, 'Updated it!');      
       }
       button.button('reset');
     });  

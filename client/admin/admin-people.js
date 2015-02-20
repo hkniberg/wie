@@ -1,6 +1,23 @@
+updatePersonRenameField = function() {
+  var personName = $('#personToUpdate option:selected').text();
+  if (!personName) {
+    personName = getFirstPerson().name;
+  }
+  $('#updatedPersonName').val(personName);
+}
+
+
 Template.adminPeople.helpers({
   'people': function() {
     return getAllPeople();
+  },
+  'defaultPersonName': function() {
+    var firstPerson = getFirstPerson();
+    if (!firstPerson || !firstPerson.name) {
+      return "";
+    } else {
+      return firstPerson.name;
+    }
   }
 });
 
@@ -26,6 +43,10 @@ Template.adminPeople.events({
       button.button('reset');
     });
   },
+  
+  'change #personToUpdate': function(e) {
+    updatePersonRenameField();  
+  },  
   
   'submit #update-person-form': function(e) {
     e.preventDefault();
