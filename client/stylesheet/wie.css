@@ -31,3 +31,9 @@
 .panel-heading a.collapsed:after {
     content:"\e080";
 }
+
+.confirmation {
+  color: green;
+  margin-left: 10px;
+}
+

@@ -16,15 +16,22 @@ Template.adminPeople.events({
       return;
     }
       
-    if (Meteor.call("createPerson", newPersonName)) {
-      newPersonField.val('');    
-    }
+    var button = $(e.target).find(':submit');
+    button.button('loading');      
+    Meteor.call("createPerson", newPersonName, function(err, result) {
+      if (!showError(err)) {
+        confirm(e, '' + newPersonName + ' has been born! Congrats!');
+        newPersonField.val('');        
+      }
+      button.button('reset');
+    });
   },
   
   'submit #update-person-form': function(e) {
     e.preventDefault();
     
     var personId = $(e.target).find('[id=personToUpdate]').val();
+    var personName = $(e.target).find('option:selected').text();
 
     var updatedPersonField = $(e.target).find('[id=updatedPersonName]');
     var updatedPersonName = updatedPersonField.val();
@@ -33,17 +40,32 @@ Template.adminPeople.events({
     if (!updatedPersonName) {
       return;
     }
-        
-    if (Meteor.call("renamePerson", personId, updatedPersonName)) {
-      updatedPersonField.val('');
-    }
+
+    var button = $(e.target).find(':submit');
+    button.button('loading');      
+    Meteor.call("renamePerson", personId, updatedPersonName, function(err, result) {
+      if (!showError(err)) {
+        confirm(e, personName + " is now known as " + updatedPersonName);
+        updatedPersonField.val('');        
+      }
+      button.button('reset');
+    });  
   },
   
   'submit #remove-person-form': function(e) {
     e.preventDefault();
     
     var personId = $(e.target).find('[id=personToRemove]').val();
-    Meteor.call("removePerson", personId);
+    var personName = $(e.target).find('option:selected').text();
+    
+    var button = $(e.target).find(':submit');
+    button.button('loading');      
+    Meteor.call("removePerson", personId, function(err, result) {
+      if (!showError(err)) {
+        confirm(e, "Gone. Dead. Vanquished. RIP " + personName + " :(");
+      }
+      button.button('reset');
+    });  
   }  
   
   

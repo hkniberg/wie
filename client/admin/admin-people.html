@@ -6,9 +6,8 @@
 
       <input type="text" class="form-control" id="newPersonName" placeholder="name">
       
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary">Add</button>
-      </span>
+      <button type="submit" data-loading-text="adding..." class="btn btn-primary">Add</button>
+      <span class="confirmation"></span>
 
     </form>
   </div>
@@ -24,9 +23,8 @@
 
       <input type="text" class="form-control" id="updatedPersonName" placeholder="new name">
       
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary">Add</button>
-      </span>
+      <button type="submit" data-loading-text="renaming..." class="btn btn-primary">Add</button>
+      <span class="confirmation"></span>
     </form>
   </div>  
   
@@ -40,9 +38,10 @@
         {{/each}}
       </select>
       
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-danger">Remove</button>
-      </span>
+
+      <button type="submit" data-loading-text="removing..." class="btn btn-danger">Remove</button>
+      <span class="confirmation"></span>
+
 
     </form>
   </div>    

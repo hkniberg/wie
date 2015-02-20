@@ -1,3 +1,5 @@
+
+
 Template.adminPlaces.helpers({
   'places': function() {
     return getAllPlaces();
@@ -28,7 +30,7 @@ Template.adminPlaces.events({
     
     Meteor.call('createPlace', newPlaceName, icon, function(err, result) {
       if (!showError(err)) {
-        sweetAlert("Done!", "Added " + newPlaceName, "success");
+        confirm(e, 'Created ' + newPlaceName);
         newPlaceField.val('');        
       }
       button.button('reset');
@@ -50,15 +52,14 @@ Template.adminPlaces.events({
       return;
     }
         
-    if (Meteor.call('updatePlace', updatedPlaceName, icon)) {
-      updatedPlaceField.val('');      
-    }
-    
-    Meteor.call('updatePlace', updatedPlaceName, icon, function(err, result) {
+    var button = $(e.target).find(':submit');
+    button.button('loading');
+    Meteor.call('updatePlace', placeId, updatedPlaceName, icon, function(err, result) {
       if (!showError(err)) {
-        sweetAlert("Done!", "You've updated " + updatedPlaceName, "success");
-        newPlaceField.val('');        
+        confirm(e, 'Updated it!');
+        updatedPlaceField.val('');        
       }
+      button.button('reset');
     });  
   },
   
@@ -68,10 +69,13 @@ Template.adminPlaces.events({
     var placeId = $(e.target).find('[id=placeToRemove]').val();
     var placeName = $(e.target).find('[value=' + placeId + ']').text();
     
+    var button = $(e.target).find(':submit');
+    button.button('loading');
     Meteor.call('removePlace', placeId, function(err, result) {
       if (!showError(err)) {
-        sweetAlert("Gone!", "You've removed " + placeName, "success");
+        confirm(e, "Removed " + placeName + ". Totally gone.");
       }      
+      button.button('reset');
     });    
   }
   
