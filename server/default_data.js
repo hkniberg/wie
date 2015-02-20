@@ -39,4 +39,20 @@ if (People.find().count() === 0) {
     time: new Date(now - 100 * 60 * 1000)
   });
   
+  Messages.insert({
+    from: 'Joe',
+    text: 'Hey there :)',
+    time: new Date(now - 10 * 60 * 1000)
+  });
+  Messages.insert({
+    from: 'Lisa',
+    text: 'Cool, here is a pretty long message that might take up several rows.',
+    time: new Date(now - 30 * 60 * 1000)
+  });
+  Messages.insert({
+    from: 'Joe',
+    text: 'This is cool!',
+    time: new Date(now - 70 * 60 * 1000)
+  });
+  
 }

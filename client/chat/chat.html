@@ -1,0 +1,42 @@
+<template name="chat">
+
+  <div class="col-xs-12">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <a href="#" id="chatExpandButton" class="btn btn-default btn-sm">          
+          </a>        
+          Chat
+        </div>
+      </div>
+      
+      <div class="panel-body">
+
+        <div id="chatMessages" class="chatMessages chatMessagesSmall">
+          {{#each chatMessages}}
+            <div class="chatMessage">
+              <span class="chatSender">{{from}}</span>
+              <span class="chatTime">{{time}}</span>
+              <span class="chatText">{{text}}</span>
+            </div>
+          {{/each}}
+        </div>
+
+        <form>
+          <select id="chatSender">
+            {{#each people}}
+              <option value="{{name}}">{{name}}</option>
+            {{/each}}
+          </select>
+          <input id="chatText" type="text" placeholder="say something!">
+          
+            <button id="chatButton" class="btn btn-success btn-xs">
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>                    
+        </form>
+      </div>
+    </div>
+
+  </div>
+</template>
+

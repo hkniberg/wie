@@ -41,3 +41,29 @@
   margin-bottom: 10px;
 }
 
+.chatMessages {
+  line-height: 1.2em;
+}
+
+.chatMessagesSmall {
+  height: 2.4em;  
+  overflow: hidden;  
+}
+
+.chatMessagesLarge {
+  height: 18em;  
+  overflow: auto;
+}
+
+.chatSender {
+  font-weight: bold;
+}
+
+.chatTime {
+  font-size: 10px;
+  color: gray;
+}
+
+.chatText {
+  
+}
