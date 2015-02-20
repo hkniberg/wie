@@ -1,40 +1,59 @@
 <template name="adminPlaces">
   <div>
     <h3>Add place</h3>
-    <form id="add-place-form" >
-      <div class="input-group">
-        <input type="text" class="form-control" id="newPlaceName" placeholder="Place name">          
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-default">Add</button>
-        </span>
-      </div>
-    <div class="btn-group" data-toggle="buttons">
-      {{#each icons}}
-        <label class="btn btn-default">
-          <input type="radio" name="icon" value="{{this}}" autocomplete="off">
-          <img src="icons/{{this}}">
-        </label> 
-      {{/each}}
-    </div>        
-    </form>
-
+    <form id="add-place-form">
+      <input type="text" class="form-control" id="newPlaceName" placeholder="Place name">          
       
+      <div class="btn-group" data-toggle="buttons">
+        {{#each icons}}
+          <label class="btn btn-default">
+            <input type="radio" name="icon" value="{{this}}" autocomplete="off">
+            <img src="icons/{{this}}">
+          </label> 
+        {{/each}}
+      </div>        
+
+      <button type="submit" data-loading-text="adding..." class="btn btn-primary">Add</button>
+      
+        
+    </form>    
+  </div>
+  
+  <div>
+    <h3>Rename place</h3>
+    <form id="update-place-form">
+      <select class="form-control" id="placeToUpdate">
+        {{#each places}}
+          <option value="{{_id}}">{{name}}</option>
+        {{/each}}
+      </select>
+
+      <input type="text" class="form-control" id="updatedPlaceName" placeholder="New name">          
+
+      <div class="btn-group" data-toggle="buttons">
+        {{#each icons}}
+          <label class="btn btn-default">
+            <input type="radio" name="icon" value="{{this}}" autocomplete="off">
+            <img src="icons/{{this}}">
+          </label> 
+        {{/each}}
+      </div>   
+
+      <button type="submit" class="btn btn-primary">Rename</button>
+
+    </form>    
   </div>
   
   <div>
     <h3>Remove place</h3>
-    <form id="remove-place-form" class="form-inline">
-      <div class="input-group">
-        <select class="form-control" id="placeToRemove">
-          {{#each places}}
-            <option value="{{_id}}">{{name}}</option>
-          {{/each}}
-        </select>
-        
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-default">Remove</button>
-        </span>
-      </div>
+    <form id="remove-place-form">
+      <select class="form-control" id="placeToRemove">
+        {{#each places}}
+          <option value="{{_id}}">{{name}}</option>
+        {{/each}}
+      </select>
+      
+      <button type="submit" class="btn btn-danger">Remove</button>
     </form>
   </div>  
 

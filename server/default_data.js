@@ -1,38 +1,42 @@
 if (People.find().count() === 0) {
   var now = new Date().getTime();
   
+
+  var cabinId = Places.insert({
+    name: 'cabin',
+    icon: 'cabin.png'
+  });
+  
+  var slopeId = Places.insert({
+    name: 'slope',
+    icon: 'ski.png'
+  });
+
+
   People.insert({
     name: 'Joe',
-    place: 'cabin',
+    placeId: cabinId,
     time: new Date(now - 1 * 60 * 1000)
   });
   People.insert({
     name: 'Henrik',
-    place: 'cabin',
+    placeId: cabinId,
     time: new Date(now - 5 * 60 * 1000)
   });
   People.insert({
     name: 'Lisa',
-    place: 'slope',
+    placeId: slopeId,
     time: new Date(now - 30 * 60 * 1000)
   });
   People.insert({
     name: 'Jenny',
-    place: '',
+    placeId: null,
     time: new Date(now - 60 * 60 * 1000)
   });
   People.insert({
     name: 'Sam',
-    place: '',
+    placeId: null,
     time: new Date(now - 100 * 60 * 1000)
   });
   
-  Places.insert({
-    name: 'cabin',
-    icon: 'cabin.png'
-  });
-  Places.insert({
-    name: 'slope',
-    icon: 'ski.png'
-  });
 }

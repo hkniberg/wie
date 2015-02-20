@@ -1,12 +1,14 @@
+var peopleToShowAt = function(place) {
+  return getPeopleAt(place._id).fetch();
+}
+
 Template.whoIsWhere.helpers({
 
  
   placesToShow: function() {
     var places = getAllPlacesAndUnknown();
     var placesToShow = _.filter(places, function(place) {
-      var mongoPlaceName = getPlaceMongoName(place);
-      var result = People.find({place: mongoPlaceName}).count() > 0;
-      return result;      
+      return peopleToShowAt(place).length > 0   
     });
     return placesToShow;
   }
@@ -17,13 +19,8 @@ Template.place.helpers({
     return hasSelection();
   },
   
-  people: function() {
-    return People.find();
-  },
-  
   peopleAt: function(place) {
-    var placeMongoName = getPlaceMongoName(place);
-    return People.find({place: placeMongoName}, {sort: ['name']});      
+    return peopleToShowAt(place);
   },
   
   name: function() {
@@ -41,6 +38,10 @@ Template.person.helpers({
   },
   
   time: function() {
+    if (this.placeId == null) {
+      return "";
+    }
+    
     var personTime = this.time;
     var now = currentTime.get();
     var ageMs = (now.getTime()) - personTime.getTime();

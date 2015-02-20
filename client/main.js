@@ -4,23 +4,13 @@ Template.main.helpers({
   }  
 });
 
-
 currentTime = new ReactiveVar();
 currentTime.set(new Date());
-
 
 Meteor.setInterval(function() {
   var now = new Date();
   currentTime.set(now);
-}, 5000);
-
-getPlaceDisplayName = function(place) {
-  return place.name ? place.name : '(dunno)';
-}
-
-getPlaceMongoName = function(place) {
-  return place._id == '-' ? '' : place.name;  
-}
+}, 60000);
 
 unknownPlace = {
         _id: '-',
@@ -29,8 +19,7 @@ unknownPlace = {
 };
 
 getAllPlacesAndUnknown = function() {
-  var places = Places.find({}, {sort: {name: 1}});
-  places = places.fetch();
+  places = getAllPlaces().fetch();
   places.push(unknownPlace);
   return places;
 }

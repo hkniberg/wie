@@ -2,30 +2,48 @@
   
   <div>
     <h3>Add person</h3>
-    <form id="add-person-form" class="form-inline">
-      <div class="input-group">
-        <input type="text" class="form-control" id="newPersonName" placeholder="Person name">
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-default">Add</button>
-        </span>
-      </div>
+    <form id="add-person-form" >
+
+      <input type="text" class="form-control" id="newPersonName" placeholder="name">
+      
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary">Add</button>
+      </span>
+
     </form>
   </div>
   
   <div>
+    <h3>Rename person</h3>
+    <form id="update-person-form" >
+      <select class="form-control" id="personToUpdate">
+        {{#each people}}
+          <option value="{{_id}}">{{name}}</option>
+        {{/each}}
+      </select>
+
+      <input type="text" class="form-control" id="updatedPersonName" placeholder="new name">
+      
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary">Add</button>
+      </span>
+    </form>
+  </div>  
+  
+  <div>
     <h3>Remove person</h3>
-    <form id="remove-person-form" class="form-inline">
-      <div class="input-group">
-        <select class="form-control" id="personToRemove">
-          {{#each people}}
-            <option value="{{_id}}">{{name}}</option>
-          {{/each}}
-        </select>
-        
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-default">Remove</button>
-        </span>
-      </div>
+    <form id="remove-person-form">
+   
+      <select class="form-control" id="personToRemove">
+        {{#each people}}
+          <option value="{{_id}}">{{name}}</option>
+        {{/each}}
+      </select>
+      
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-danger">Remove</button>
+      </span>
+
     </form>
   </div>    
   

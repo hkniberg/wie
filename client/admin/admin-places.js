@@ -1,6 +1,6 @@
 Template.adminPlaces.helpers({
   'places': function() {
-    return Places.find({}, {sort: {name: 1}});
+    return getAllPlaces();
   },
   'icons': function() {
     return [
@@ -18,45 +18,61 @@ Template.adminPlaces.events({
     newPlaceName = newPlaceName.trim();
     
     var icon = $('#add-place-form input[type=radio]:checked').val();
-    if (!icon) {
-      icon = '';
-    }    
         
     if (!newPlaceName) {
       return;
     }
-        
-    var duplicate = _.find(Places.find().fetch(), function(existingPlace) {
-      return existingPlace.name.toLowerCase() === newPlaceName.toLowerCase();
+    
+    var button = $(e.target).find(':submit');
+    button.button('loading');
+    
+    Meteor.call('createPlace', newPlaceName, icon, function(err, result) {
+      if (!showError(err)) {
+        sweetAlert("Done!", "Added " + newPlaceName, "success");
+        newPlaceField.val('');        
+      }
+      button.button('reset');
     });
-    if (duplicate) {
+  },
+  
+  'submit #update-place-form': function(e) {
+    e.preventDefault();
+    
+    var placeId = $(e.target).find('[id=placeToUpdate]').val();
+
+    var updatedPlaceField = $(e.target).find('[id=updatedPlaceName]');
+    var updatedPlaceName = updatedPlaceField.val();
+    updatedPlaceName = updatedPlaceName.trim();
+    
+    var icon = $('#update-place-form input[type=radio]:checked').val();
+        
+    if (!updatedPlaceName) {
       return;
     }
+        
+    if (Meteor.call('updatePlace', updatedPlaceName, icon)) {
+      updatedPlaceField.val('');      
+    }
     
-    Places.insert(
-      {name: newPlaceName, icon: icon}
-    );
-    newPlaceField.val('');
-    
-
-    
+    Meteor.call('updatePlace', updatedPlaceName, icon, function(err, result) {
+      if (!showError(err)) {
+        sweetAlert("Done!", "You've updated " + updatedPlaceName, "success");
+        newPlaceField.val('');        
+      }
+    });  
   },
   
   'submit #remove-place-form': function(e) {
     e.preventDefault();
     
     var placeId = $(e.target).find('[id=placeToRemove]').val();
-    var place = Places.findOne({_id: placeId});
+    var placeName = $(e.target).find('[value=' + placeId + ']').text();
     
-    People.find().forEach(function(person) {
-      if (person.place == place.name) {
-        People.update({_id: person._id}, {$set: {place: ''}});
-      }
-    });
-    Places.remove({_id: placeId});
-    
-  },
-  
-  
+    Meteor.call('removePlace', placeId, function(err, result) {
+      if (!showError(err)) {
+        sweetAlert("Gone!", "You've removed " + placeName, "success");
+      }      
+    });    
+  }
   
 });

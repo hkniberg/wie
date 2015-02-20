@@ -1,3 +1,18 @@
+
+var movePeopleTo = function(people, placeId) {
+  people.forEach(function(person){
+    movePersonTo(person, placeId);
+  });
+}
+
+var movePersonTo = function(person, placeId) {
+  if (placeId == unknownPlace._id) {
+    placeId = null;
+  }
+  Meteor.call('movePersonTo', person._id, placeId);
+}
+
+
 Template.checkIn.helpers({
   allPlaces: function() {
     return getAllPlacesAndUnknown();
@@ -8,7 +23,7 @@ Template.checkIn.helpers({
     if (people.length == 1) {
       return "Move " + people[0].name + " to:";
     } else if (people.length > 1) {
-      return "Move these " + people.length + " people to:";
+      return "Move " + people.length + " ppl to:";
     } else {
       return "Move nobody";
     }
@@ -23,20 +38,8 @@ Template.checkIn.helpers({
 Template.checkIn.events({
   'click .check-in-button': function(e) {
     var placeId = $(e.target).attr("id");
-    var placeName;
-    if (placeId == '-') {
-      placeName = '';
-    } else {
-      placeName = Places.findOne({_id: placeId}).name;
-    }        
-
-    getSelectedPeople().forEach(function(person){
-      People.update({_id: person._id}, {$set: {
-        place: placeName,
-        time: new Date()
-      }});
-    });
     
+    movePeopleTo(getSelectedPeople(), placeId);     
   },
   
   'click #reset-selection-button': function(e) {

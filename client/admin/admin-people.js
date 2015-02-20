@@ -1,6 +1,6 @@
 Template.adminPeople.helpers({
   'people': function() {
-    return People.find({}, {sort: {name: 1}});
+    return getAllPeople();
   }
 });
 
@@ -15,28 +15,35 @@ Template.adminPeople.events({
     if (!newPersonName) {
       return;
     }
-        
-    var duplicate = _.find(People.find().fetch(), function(existingPerson) {
-      return existingPerson.name.toLowerCase() === newPersonName.toLowerCase();
-    });
-    if (duplicate) {
+      
+    if (Meteor.call("createPerson", newPersonName)) {
+      newPersonField.val('');    
+    }
+  },
+  
+  'submit #update-person-form': function(e) {
+    e.preventDefault();
+    
+    var personId = $(e.target).find('[id=personToUpdate]').val();
+
+    var updatedPersonField = $(e.target).find('[id=updatedPersonName]');
+    var updatedPersonName = updatedPersonField.val();
+    updatedPersonName = updatedPersonName.trim();
+    
+    if (!updatedPersonName) {
       return;
     }
-    
-    People.insert({
-      name: newPersonName,
-      place: '',
-      time: new Date()
-    });
-    newPersonField.val('');
-    
+        
+    if (Meteor.call("renamePerson", personId, updatedPersonName)) {
+      updatedPersonField.val('');
+    }
   },
   
   'submit #remove-person-form': function(e) {
     e.preventDefault();
     
     var personId = $(e.target).find('[id=personToRemove]').val();
-    People.remove({_id: personId});
+    Meteor.call("removePerson", personId);
   }  
   
   
