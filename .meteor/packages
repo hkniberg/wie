@@ -5,10 +5,11 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
 insecure
 twbs:bootstrap
 reactive-var
 kevohagan:sweetalert
 mrt:moment
 timmyg:wow
+iron:router
+sacha:spin
