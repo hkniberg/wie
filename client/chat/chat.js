@@ -4,6 +4,13 @@ scrollChatToBottom = function() {
   }
 }
 
+flash = function(element) {
+  element.addClass("animated bounce");
+  setTimeout(function() {
+    element.removeClass("animated bounce");
+  }, 1000)
+}
+
 chatExpanded = false;
 
 flashEnabled = false;
@@ -94,11 +101,11 @@ Template.chat.rendered = function() {
           if (personId) {
             //console.log("will flash " + personId);
             var personButton = $("#buttonForPerson" + personId);
-            personButton.effect("highlight", 1500);          
+            flash(personButton);          
           }
         }
       
-        $("#chatPanelHeading").effect("highlight", 1500);          
+        flash($("#chatPanelHeading"));
       
       }, 200);
     }

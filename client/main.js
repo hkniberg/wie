@@ -17,3 +17,8 @@ getAllPlacesAndUnknown = function() {
   places.push(unknownPlace);
   return places;
 }
+
+
+Template.main.rendered = function() {
+  new WOW().init();
+}

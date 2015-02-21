@@ -2,7 +2,7 @@
 
   <div class="col-xs-12">
     <div class="panel panel-success">
-      <div id="chatPanelHeading" class="panel-heading">
+      <div id="chatPanelHeading" class="panel-heading chatExpander">
         <div class="panel-title">
           <a href="#" id="chatExpandButton" class="btn btn-default btn-sm">          
           </a>        
@@ -12,7 +12,7 @@
       
       <div class="panel-body">
 
-        <div id="chatMessages" class="chatMessages chatMessagesSmall">
+        <div id="chatMessages" class="chatMessages chatMessagesSmall chatExpander">
           {{#each chatMessages}}
             <div class="chatMessage">
               <span class="chatSender">{{from}}</span>
@@ -28,7 +28,7 @@
               <option value="{{name}}">{{name}}</option>
             {{/each}}
           </select>
-          <input id="chatText" type="text" placeholder="say something!">
+          <input id="chatText" type="text" placeholder="says...">
           
             <button id="chatButton" class="btn btn-success btn-xs">
               <span class="glyphicon glyphicon-ok"></span>
