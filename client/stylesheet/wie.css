@@ -12,10 +12,15 @@
 .btn-person {
   border-color: #ccc;
   background-color: #eee;  
+  padding: 2px 4px;
 }
 
 .btn-success {
   background-color: #5cb85c;
+}
+
+.panel-info {
+  margin-bottom: 7px;
 }
 
 .panel-title {
@@ -50,18 +55,18 @@
 
 .chatMessages {
   font-size: 16px;
-  line-height: 1.2em;
+  line-height: 1.3em;
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
 .chatMessagesSmall {
-  height: 2.4em;  
+  height: 2.6em;  
   overflow: hidden;  
 }
 
 .chatMessagesLarge {
-  height: 16.8em;  
+  height: 12.9em;  
   overflow: auto;
 }
 
@@ -96,4 +101,8 @@
   vertical-align: text-top;
   pointer-events:none;
   background-color: green;
+}
+
+.admin-panel {
+  padding: 2px 0px 10px 0px;
 }
