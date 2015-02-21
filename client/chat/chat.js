@@ -23,8 +23,15 @@ setTimeout(function() {
   flashEnabled = true;
 }, 10000);
 
+getSavedSenderName = function() {
+  return localStorage.getItem("savedSenderName");  
+}
 
-Template.chat.helpers({
+setSavedSenderName = function(name) {
+  localStorage.setItem("savedSenderName", name);
+}
+
+Template.chat.helpers({    
   people: function() {
     return getAllPeople();
   },
@@ -42,14 +49,15 @@ Template.chat.helpers({
   }
 })
 
-
 Template.chat.events({
+  'change #chatSender': function(e) {
+    setSavedSenderName($("#chatSender").val());
+  },
+  
   'submit form': function(e) {
     e.preventDefault();
     var from = $("#chatSender").val();
     var text = $("#chatText").val();
-    
-    localStorage.setItem("chatName", from);
     
     if (from && text) {
       Meteor.call("chat", from, text);   
@@ -88,6 +96,11 @@ Template.chat.events({
 
 
 Template.chat.rendered = function() {
+  var savedSenderName = getSavedSenderName();
+  if (savedSenderName) {
+    $("#chatSender").val(savedSenderName); 
+  }
+  
   getAllChatMessages().observe({
     added: function(doc) {
       if (!flashEnabled) {

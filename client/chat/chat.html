@@ -22,7 +22,7 @@
           {{/each}}
         </div>
 
-        <form>
+        <form class="form-inline">
           <select id="chatSender">
             {{#each people}}
               <option value="{{name}}">{{name}}</option>
@@ -31,7 +31,7 @@
           <input id="chatText" type="text" placeholder="says...">
           
             <button id="chatButton" class="btn btn-success btn-xs">
-              <span class="glyphicon glyphicon-ok"></span>
+              send
             </button>                    
         </form>
       </div>
