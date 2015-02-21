@@ -19,5 +19,8 @@
 </template>
 
 <template name="person">
-  <div class="btn btn-person person {{personClass}}">{{name}} <small class="time">{{time}}</small></div>
+  <div id="buttonForPerson{{_id}}" class="btn btn-person person {{personClass}}">
+    {{name}}
+    <small class="time">{{time}}</small>
+  </div>
 </template>

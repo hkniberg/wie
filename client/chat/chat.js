@@ -1,8 +1,21 @@
 scrollChatToBottom = function() {
-  $("#chatMessages").scrollTop($("#chatMessages").prop("scrollHeight"));
+  if (scrollEnabled) {
+    $("#chatMessages").scrollTop($("#chatMessages").prop("scrollHeight"));
+  }
 }
 
 chatExpanded = false;
+
+flashEnabled = false;
+scrollEnabled = false;
+setTimeout(function() {
+  scrollEnabled = true;
+  scrollChatToBottom();
+}, 2000);
+setTimeout(function() {
+  flashEnabled = true;
+}, 10000);
+
 
 Template.chat.helpers({
   people: function() {
@@ -28,6 +41,8 @@ Template.chat.events({
     e.preventDefault();
     var from = $("#chatSender").val();
     var text = $("#chatText").val();
+    
+    localStorage.setItem("chatName", from);
     
     if (from && text) {
       Meteor.call("chat", from, text);   
@@ -55,13 +70,30 @@ Template.chat.events({
   }
 })
 
+
 Template.chat.rendered = function() {
   getAllChatMessages().observe({
     added: function(doc) {
+      if (!flashEnabled) {
+        return;
+      }      
+      
       setTimeout(function() {
         scrollChatToBottom();      
-      }, 1000);
+        if (doc.from) {
+          var personId = getIdOfPerson(doc.from);
+          if (personId) {
+            //console.log("will flash " + personId);
+            var personButton = $("#buttonForPerson" + personId);
+            personButton.effect("highlight", 1500);          
+          }
+        }
+      
+        $("#chatPanelHeading").effect("highlight", 1500);          
+      
+      }, 200);
     }
   })  
 }
+
 

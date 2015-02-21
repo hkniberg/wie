@@ -22,14 +22,21 @@
   font-size: 20px;
 }
 
+.panel-heading {
+  padding: 2px;
+}
+
 .panel-heading a:after {
     font-family:'Glyphicons Halflings';
     content:"\e114";
-    float: right;
+    float: left;
     color: grey;
 }
 .panel-heading a.collapsed:after {
     content:"\e080";
+}
+.panel-body {
+  padding: 4px;
 }
 
 .confirmation {
