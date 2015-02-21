@@ -19,6 +19,6 @@ getAllPlacesAndUnknown = function() {
 }
 
 
-Template.main.rendered = function() {
+//Template.allOnOnePage.rendered = function() {
   new WOW().init();
-}
+//}

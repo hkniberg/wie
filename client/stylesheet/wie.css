@@ -58,7 +58,7 @@
 }
 
 .chatMessagesLarge {
-  /*height: 18em;  */
+  height: 24em;  
   overflow: auto;
 }
 

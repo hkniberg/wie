@@ -1,0 +1,20 @@
+<template name="tabs">
+  
+  <div role="tabpanel">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#tab-check-in" role="tab" data-toggle="tab">Check in</a></li>
+      <li role="presentation"><a href="#tab-chat" role="tab" data-toggle="tab">Chat</a></li>
+      <li role="presentation"><a href="#tab-admin"  role="tab" data-toggle="tab">Admin</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="tab-check-in">{{>checkIn}}</div>
+      <div role="tabpanel" class="tab-pane" id="tab-chat">{{>chat}}</div>
+      <div role="tabpanel" class="tab-pane" id="tab-admin">{{>admin}}</div>
+    </div>
+
+  </div>
+</template>

@@ -13,7 +13,7 @@ var movePersonTo = function(person, placeId) {
 }
 
 
-Template.checkIn.helpers({ 
+Template.moveTo.helpers({ 
   checkInButtonClass: function() {
     return hasSelection() ? "" : "disabled";
   },
@@ -43,7 +43,7 @@ Template.checkIn.helpers({
   }
 });
 
-Template.checkIn.events({
+Template.moveTo.events({
   'click .check-in-button': function(e) {
     var placeId = $(e.target).attr("id");
     
