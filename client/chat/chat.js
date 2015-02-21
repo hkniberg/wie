@@ -50,23 +50,32 @@ Template.chat.events({
       scrollChatToBottom();
     }
   },
-  'click #chatExpandButton': function(e) {
+  'click .chatExpander': function(e) {
     var chatMessages =  $("#chatMessages");
     var glyph = $("#chatExpandGlyph");
     
     if (!chatExpanded) {
-      chatMessages.removeClass("chatMessagesSmall");    
-      chatMessages.addClass("chatMessagesLarge");    
       glyph.removeClass("glyphicon-chevron-down");
       glyph.addClass("glyphicon-chevron-up");
+      chatMessages.animate({height: "18em"}, 400, "swing", function() {
+        chatMessages.removeClass("chatExpander");
+        chatMessages.removeClass("chatMessagesSmall");    
+        chatMessages.addClass("chatMessagesLarge");    
+        scrollChatToBottom();        
+      });
     } else {
-      chatMessages.addClass("chatMessagesSmall");    
-      chatMessages.removeClass("chatMessagesLarge");    
       glyph.addClass("glyphicon-chevron-down");
       glyph.removeClass("glyphicon-chevron-up");      
+
+      chatMessages.animate({height: "2.4em"}, 400, "swing", function() {
+        chatMessages.addClass("chatExpander");
+        chatMessages.addClass("chatMessagesSmall");    
+        chatMessages.removeClass("chatMessagesLarge");    
+        scrollChatToBottom();
+      });
     } 
     chatExpanded = !chatExpanded;
-    scrollChatToBottom();
+    //scrollChatToBottom();
   }
 })
 
