@@ -1,7 +1,5 @@
 scrollChatToBottom = function() {
-  if (scrollEnabled) {
-    $("#chatMessages").scrollTop($("#chatMessages").prop("scrollHeight"));
-  }
+  $("#chatMessages").scrollTop($("#chatMessages").prop("scrollHeight"));
 }
 
 flash = function(element) {
@@ -11,14 +9,10 @@ flash = function(element) {
   }, 1000)
 }
 
-chatExpanded = false;
-
 flashEnabled = false;
-scrollEnabled = false;
-setTimeout(function() {
-  scrollEnabled = true;
-  scrollChatToBottom();
-}, 2000);
+
+//scrollEnabled = false;
+
 
 setTimeout(function() {
   flashEnabled = true;
@@ -77,9 +71,21 @@ Template.chat.rendered = function() {
   
   getAllChatMessages().observe({
     added: function(doc) {
+      scrollChatToBottom();
+      
       if (!flashEnabled) {
         return;
-      }      
+      }   
+      
+      if (currentTab.get() != "chat") {
+        var unreadCount = unreadChatCount.get();
+        if (!unreadCount) {
+          unreadCount = 1;
+        } else {
+          unreadCount += 1;
+        }
+        unreadChatCount.set(unreadCount);
+      }   
       
       setTimeout(function() {
         scrollChatToBottom();      
@@ -92,7 +98,7 @@ Template.chat.rendered = function() {
           }
         }
       
-        //flash($("#chatPanelHeading"));
+        flash($("#nav-chat"));
       
       }, 200);
     }
