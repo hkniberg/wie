@@ -49,7 +49,10 @@
 }
 
 .chatMessages {
+  font-size: 16px;
   line-height: 1.2em;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .chatMessagesSmall {
@@ -58,7 +61,7 @@
 }
 
 .chatMessagesLarge {
-  height: 24em;  
+  height: 16.8em;  
   overflow: auto;
 }
 
@@ -71,6 +74,20 @@
   color: gray;
 }
 
-.chatText {
-  
+.chatMessage:nth-child(2n+1) {
+  background-color: #eee;
 }
+
+.chatMessage:nth-child(2n) {
+  background-color: ivory;
+}
+
+.chat-form {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.nav-tabs {
+  font-size: 18px;
+}
+

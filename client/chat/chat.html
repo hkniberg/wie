@@ -1,40 +1,32 @@
 <template name="chat">
 
-  <div class="col-xs-12">
-    <div class="panel panel-success">
-      <div id="chatPanelHeading" class="panel-heading chatExpander">
-        <div class="panel-title">
-          Chat
-        </div>
+  <div id="chatMessages" class="chatMessages chatMessagesLarge">
+    {{#each chatMessages}}
+      <div class="chatMessage">
+        <span class="chatSender">{{from}}</span>
+        <span class="chatTime">{{time}}</span>
+        <span class="chatText">{{text}}</span>
       </div>
-      
-      <div class="panel-body">
-
-        <div id="chatMessages" class="chatMessages chatMessagesLarge">
-          {{#each chatMessages}}
-            <div class="chatMessage">
-              <span class="chatSender">{{from}}</span>
-              <span class="chatTime">{{time}}</span>
-              <span class="chatText">{{text}}</span>
-            </div>
-          {{/each}}
-        </div>
-
-        <form class="form-inline">
-            <select id="chatSender">
-              {{#each people}}
-                <option value="{{name}}">{{name}}</option>
-              {{/each}}
-            </select>
-            <input id="chatText" type="text" placeholder="says...">
-          
-            <button id="chatButton" class="btn btn-success btn-xs">
-              send
-            </button>                    
-        </form>
-      </div>
-    </div>
-
+    {{/each}}
   </div>
+
+  <form class="chat-form">
+    <div>
+    <label for="chatSender">Your name</label>
+    <select id="chatSender">
+      {{#each people}}
+        <option value="{{name}}">{{name}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div>
+      <input id="chatText" type="text" placeholder="say something!">
+    
+    <button id="chatButton" class="btn btn-success btn-sm">
+      send
+    </button>                    
+  </div>
+  </form>
+
 </template>
 

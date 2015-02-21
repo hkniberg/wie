@@ -8,8 +8,12 @@ showError = function(err) {
 }
 
 confirm = function(event, text) {
+  sweetAlert("Done!", text, "success");
+  
+  /*
   confirmationLabel = $(event.target).find('.confirmation');
   confirmationLabel.text(text);
   confirmationLabel.show();
   confirmationLabel.fadeOut(5000);
+  */
 };
