@@ -1,18 +1,62 @@
 scrollChatToBottom = function() {
-  $("#chatMessages").scrollTop($("#chatMessages").prop("scrollHeight"));
+  setTimeout(function() {
+    $("#chatMessages").scrollTop($("#chatMessages").prop("scrollHeight"));
+  }, 200);
 }
 
 flash = function(element) {
-  element.addClass("animated bounce");
-  setTimeout(function() {
-    element.removeClass("animated bounce");
-  }, 1000)
+  if (flashEnabled) {
+    element.addClass("animated bounce");
+    setTimeout(function() {
+      element.removeClass("animated bounce");
+    }, 1000)
+  }
 }
-
 flashEnabled = false;
 
-//scrollEnabled = false;
+//a number, not a Date object
+getLastReadMessageTime = function() {
+	var result = localStorage.getItem("lastReadMessageTime");
+  return result;
+}
 
+//a number, not a Date object
+setLastReadMessageTime = function(time) {
+	localStorage.setItem("lastReadMessageTime", time);
+}
+
+setLastReadMessage = function(message) {
+  if (message && message.time) {
+    setLastReadMessageTime(message.time.getTime());
+  } else {
+    setLastReadMessageTime(null);
+  }
+}
+
+isMessageUnread = function(message) {
+  var lastReadMessageTime = getLastReadMessageTime();
+  if (lastReadMessageTime) {
+    return message.time.getTime() > lastReadMessageTime;
+  } else {
+    return true;
+  }
+}
+
+increaseUnreadChatCount = function() {
+  var unreadCount = unreadChatCount.get();
+  if (!unreadCount) {
+    unreadCount = 1;
+  } else {
+    unreadCount += 1;
+  }
+  unreadChatCount.set(unreadCount);
+}
+
+setAllMessagesRead = function() {
+  unreadChatCount.set(0);
+  var lastMessage = getLastChatMessage();
+  setLastReadMessage(lastMessage);
+}
 
 setTimeout(function() {
   flashEnabled = true;
@@ -70,37 +114,26 @@ Template.chat.rendered = function() {
   }
   
   getAllChatMessages().observe({
-    added: function(doc) {
-      scrollChatToBottom();
-      
-      if (!flashEnabled) {
-        return;
-      }   
-      
-      if (currentTab.get() != "chat") {
-        var unreadCount = unreadChatCount.get();
-        if (!unreadCount) {
-          unreadCount = 1;
-        } else {
-          unreadCount += 1;
+	  
+	  //AHA, a chat message was added
+    added: function(message) {
+      flash($("#nav-chat"));
+
+      var isUnread = isMessageUnread(message);
+      if (currentTab.get() == "chat") {
+        scrollChatToBottom();
+  	    if (isUnread) {
+  	      //I haven't seen this message before!
+          setLastReadMessage(message);
+          //... but I'm seeing it right now, so I don't need to update the unread count.
+  	    }                
+      } else {
+        if (isUnread) {
+          //I'm not watching the chat, and this is a new message,
+          //so I better increase the unread count.
+          increaseUnreadChatCount();
         }
-        unreadChatCount.set(unreadCount);
-      }   
-      
-      setTimeout(function() {
-        scrollChatToBottom();      
-        if (doc.from) {
-          var personId = getIdOfPerson(doc.from);
-          if (personId) {
-            //console.log("will flash " + personId);
-            var personButton = $("#buttonForPerson" + personId);
-            //flash(personButton);          
-          }
-        }
-      
-        flash($("#nav-chat"));
-      
-      }, 200);
+      }	  
     }
   })  
 };

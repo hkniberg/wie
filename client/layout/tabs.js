@@ -11,10 +11,10 @@ Template.tabs.events({
       
     } else if (href.indexOf('tab-chat') > -1) {
       currentTab.set('chat');
-      setTimeout(function() {
-        scrollChatToBottom();
-      }, 200);
-      unreadChatCount.set(0);
+      scrollChatToBottom();
+      setAllMessagesRead();
+
+      
       
     } else if (href.indexOf('tab-admin') > -1) {
       currentTab.set('admin');    

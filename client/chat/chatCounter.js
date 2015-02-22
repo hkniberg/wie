@@ -8,13 +8,6 @@ Template.chatCounter.helpers({
     } else {
       return count;
     }
-    /*
-    var fromTime = showChatBadgeFromTime.get();
-    if (!fromTime) {
-      return null;
-    };
-    return countMessagesAfterTime(fromTime);
-    */
   }
 })
 
