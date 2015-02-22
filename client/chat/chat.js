@@ -4,15 +4,8 @@ scrollChatToBottom = function() {
   }, 200);
 }
 
-flash = function(element) {
-  if (flashEnabled) {
-    element.addClass("animated bounce");
-    setTimeout(function() {
-      element.removeClass("animated bounce");
-    }, 1000)
-  }
-}
-flashEnabled = false;
+
+
 
 //a number, not a Date object
 getLastReadMessageTime = function() {
@@ -57,10 +50,6 @@ setAllMessagesRead = function() {
   var lastMessage = getLastChatMessage();
   setLastReadMessage(lastMessage);
 }
-
-setTimeout(function() {
-  flashEnabled = true;
-}, 10000);
 
 getSavedSenderName = function() {
   return localStorage.getItem("savedSenderName");  

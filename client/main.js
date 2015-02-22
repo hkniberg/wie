@@ -8,7 +8,7 @@ Meteor.setInterval(function() {
 
 unknownPlace = {
         _id: '-',
-        name: '(dunno)',
+        name: '',
         icon: 'question.png'
 };
 

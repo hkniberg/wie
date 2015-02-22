@@ -24,7 +24,7 @@ Template.place.helpers({
   },
   
   name: function() {
-    return this.name ? this.name : "(dunno)";
+    return this.name ? this.name : "";
   },
   
   icon: function() {
@@ -71,6 +71,18 @@ Template.person.events({
     var personButton = $(e.target);
   }
 });
+
+Template.whoIsWhere.rendered = function() {
+  getAllPeople().observe({
+	
+	  //AHA, a chat message was added
+    changed: function(newPerson, oldPerson) {
+      console.log("newPerson = " + newPerson._id + ", oldPerson = " + oldPerson._id);
+      flash($("#nav-checkin"));
+      flash($("#buttonForPerson" + newPerson._id));
+    }
+  })  
+};
 
 
 
