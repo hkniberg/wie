@@ -1,8 +1,27 @@
 <template name="map">
   
-  <button id="seeEveryoneButton">See everyone</button>
+  <h4>Who are you with?</h4>
+  <div class="panel-body">
+    {{#each people}}
+      {{>mapPersonButton}}
+    {{/each}}
+  </div>
+  
+  <h4>Where is everyone?</h4>
+  
+  <button id="seeEveryoneButton">Pan/Zoom to see everyone</button>
+  <div id="map-canvas" class="map-canvas"></div>
+  
+  
   <button id="henrikLeft">Henrik left</button>
   <button id="henrikRight">Henrik right</button>
-  <div id="map-canvas" class="map-canvas"></div>
     
 </template>
+
+<template name="mapPersonButton">
+  <div class="btn btn-person person {{personClass}}">
+    {{name}}
+  </div>
+</template>
+
+

@@ -15,11 +15,27 @@ updateMarker = function(person) {
   if (person.position && person.position.lat && person.position.lng) {
     var position = new google.maps.LatLng(person.position.lat, person.position.lng);
     if (!marker) {
+      /*
+      marker = new MarkerWithLabel({
+        position: position,
+        map: map,
+       // title: person.name,
+       labelContent: "$425K",
+       labelAnchor: new google.maps.Point(22, 0),
+       labelClass: "labels", // the CSS class for the label
+       labelStyle: {opacity: 0.75},
+      });
+      */
+      
       marker = new google.maps.Marker({
         position: position,
         map: map,
         title: person.name
       });
+      
+      
+      
+      
       markers[person._id] = marker;      
     } else {
       console.log("Moving " + person.name + "'s marker to " + position);
@@ -39,68 +55,23 @@ updateMap = function() {
   getAllPeople().forEach(updateMarker);
 }
 
+Template.map.helpers({
+  people: function() {
+    return getAllPeople();
+  }
+})
 
-/*
-updateMap = function() {
-  
-  
-  var location = {lat: 63.3886602, lng: 13.1510247};
-  // Geolocation.latLng();
+Template.mapPersonButton.helpers({
+  personClass: function() {
+    return isSelected(this) ? 'btn-success' : '';
+  },
+})
 
-  if (location && currentTab.get() == "map") {
-    
-    if (!marker) {
-      map.setCenter(location);
-      console.log("location = " + location);
-    
-      marker = new google.maps.Marker({
-        position: location,
-        map: map,
-        title: "You"
-      });
-      
-      infoWindow = new google.maps.InfoWindow({
-        content: "You"
-      });
-      
-      infoWindow.open(map, marker);
-      
-    }
-    
-  } else {
-    console.log("I don't know my location (yet), so I can't update the map");    
-  } 
-}*/
-
-//Meteor.setInterval(updateMap, 3000);
-
-Template.map.rendered = function() {
-  GoogleMaps.init(
-      {
-          //'sensor': true, //optional
-          //'key': 'MY-GOOGLEMAPS-API-KEY', //optional
-          //'language': 'de' //optional
-      }, 
-      function(){
-          var mapOptions = {
-              zoom: 16,
-              mapTypeId: google.maps.MapTypeId.ROADMAP
-          };
-          map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions); 
-          map.setCenter(new google.maps.LatLng( 63.3886602, 13.1510247 ));
-          updateMap();
-      }
-  );  
-  getAllPeople().observe({
-	
-	  //AHA, something changed. Let's see if it was the position.
-    changed: function(newPerson, oldPerson) {      
-      if (isPositionDifferent(newPerson.position, oldPerson.position)) {
-        updateMarker(newPerson);
-      }
-    }
-  }); 
-}
+Template.mapPersonButton.events({
+  'click': function(e) {
+    toggleSelection(this);
+  }
+});
 
 Template.map.events({
   'click #seeEveryoneButton': function(e) {
@@ -132,5 +103,35 @@ isPositionDifferent = function(oldPosition, newPosition) {
   
 }
 
+
+
+
+Template.map.rendered = function() {
+  GoogleMaps.init(
+      {
+          //'sensor': true, //optional
+          //'key': 'MY-GOOGLEMAPS-API-KEY', //optional
+          //'language': 'de' //optional
+      }, 
+      function(){
+          var mapOptions = {
+              zoom: 16,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions); 
+          map.setCenter(new google.maps.LatLng( 63.3886602, 13.1510247 ));
+          updateMap();
+      }
+  );  
+  getAllPeople().observe({
+	
+	  //AHA, something changed. Let's see if it was the position.
+    changed: function(newPerson, oldPerson) {      
+      if (isPositionDifferent(newPerson.position, oldPerson.position)) {
+        updateMarker(newPerson);
+      }
+    }
+  }); 
+}
 
 

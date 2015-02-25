@@ -68,7 +68,6 @@ Template.person.helpers({
 Template.person.events({
   'click': function(e) {
     toggleSelection(this);
-    var personButton = $(e.target);
   }
 });
 
