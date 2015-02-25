@@ -7,6 +7,9 @@ zoomAndPanMapToSeeEveryone = function() {
   google.maps.event.trigger(map, 'resize');          
   if(bounds && !bounds.isEmpty()) {
     map.fitBounds(bounds);
+    if (map.getZoom() > 16) {
+      map.setZoom(16);
+    }
   } 
 }
 
@@ -30,11 +33,18 @@ updateMarker = function(person) {
       marker = new google.maps.Marker({
         position: position,
         map: map,
-        title: person.name
+        title: "David & Jenny & Henrik & Sia & Ullis & Pelle & Anders & Maja & Ossian"
       });
       
+      var infoWindow = new google.maps.InfoWindow({
+        content: marker.title,
+        maxWidth: 200
+      })      
       
-      
+      //TODO when do we remove the listener?
+      google.maps.event.addListener(marker, 'click', function() {
+        infoWindow.open(map, marker);
+      });
       
       markers[person._id] = marker;      
     } else {
