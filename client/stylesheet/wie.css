@@ -106,3 +106,14 @@
 .admin-panel {
   padding: 2px 0px 10px 0px;
 }
+
+.map-container {
+  width: 500px;
+  height: 500px;
+}
+
+#map-canvas {
+  background-color: yellow;
+  width: 500px;
+  height: 500px;
+}

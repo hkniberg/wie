@@ -14,7 +14,12 @@ Template.tabs.events({
       scrollChatToBottom();
       setAllMessagesRead();
 
-      
+    } else if (href.indexOf('tab-map') > -1) {
+      currentTab.set('map');
+      //TEMP ugly hack
+      setTimeout(function() {
+        zoomAndPanMapToSeeEveryone();
+      },200);
       
     } else if (href.indexOf('tab-admin') > -1) {
       currentTab.set('admin');    

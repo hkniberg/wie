@@ -6,6 +6,19 @@ Meteor.setInterval(function() {
   currentTime.set(now);
 }, 60000);
 
+updateMyLocation = function() {
+  if (hasSelection()) {
+    var position = Geolocation.latLng();     
+    if (position && position.lat && position.lng) {
+      getSelectedPeople().forEach(function(person) {
+        Meteor.call("reportPosition", person._id, position.lat, position.lng);
+      });      
+    }
+  }
+  
+}
+Meteor.setInterval(updateMyLocation, 2000);
+
 unknownPlace = {
         _id: '-',
         name: '',
@@ -22,3 +35,9 @@ getAllPlacesAndUnknown = function() {
 //Template.allOnOnePage.rendered = function() {
   new WOW().init();
 //}
+
+/*
+Meteor.startup(function() {
+  GoogleMaps.load();
+});
+*/

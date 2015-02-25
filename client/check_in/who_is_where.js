@@ -75,11 +75,12 @@ Template.person.events({
 Template.whoIsWhere.rendered = function() {
   getAllPeople().observe({
 	
-	  //AHA, a chat message was added
+	  //AHA, a person changed. Let's see if it was the placeId.
     changed: function(newPerson, oldPerson) {
-      console.log("newPerson = " + newPerson._id + ", oldPerson = " + oldPerson._id);
-      flash($("#nav-checkin"));
-      flash($("#buttonForPerson" + newPerson._id));
+      if (newPerson.placeId != oldPerson.placeId) {
+        flash($("#nav-checkin"));
+        flash($("#buttonForPerson" + newPerson._id));                
+      }      
     }
   })  
 };
