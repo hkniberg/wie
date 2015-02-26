@@ -1,20 +1,18 @@
 <template name="map">
   
-  <h4>Who are you with?</h4>
+  <h4>Who are you on the map?</h4>
   <div class="panel-body">
     {{#each people}}
       {{>mapPersonButton}}
     {{/each}}
   </div>
+
+  <div id="map-canvas" class="map-canvas">Hopefully a map will show up here soon...</div>
   
-  <h4>Where is everyone?</h4>
-  
-  <button id="seeEveryoneButton">Pan/Zoom to see everyone</button>
-  <div id="map-canvas" class="map-canvas"></div>
-  
-  
+  <!--
   <button id="henrikLeft">Henrik left</button>
   <button id="henrikRight">Henrik right</button>
+  -->
     
 </template>
 

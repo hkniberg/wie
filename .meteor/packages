@@ -15,3 +15,4 @@ iron:router
 sacha:spin
 mdg:geolocation
 mrt:googlemaps
+practicalmeteor:chai

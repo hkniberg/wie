@@ -17,7 +17,7 @@ updateMyLocation = function() {
   }
   
 }
-Meteor.setInterval(updateMyLocation, 2000);
+Meteor.setInterval(updateMyLocation, 20000);
 
 unknownPlace = {
         _id: '-',

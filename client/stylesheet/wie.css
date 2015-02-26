@@ -93,7 +93,11 @@
 }
 
 .nav-tabs {
-  font-size: 18px;
+  font-size: 16px;
+}
+
+.nav > li > a {
+  padding: 5px 5px;  
 }
 
 .chat-badge {
@@ -107,13 +111,8 @@
   padding: 2px 0px 10px 0px;
 }
 
-.map-container {
-  width: 500px;
-  height: 500px;
-}
-
 #map-canvas {
   background-color: yellow;
-  width: 500px;
-  height: 500px;
+  width: 300px;
+  height: 350px;
 }
