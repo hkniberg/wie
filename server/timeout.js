@@ -1,4 +1,4 @@
-var timeoutHours = 24;
+var timeoutHours = 18;
 
 var timeoutPeopleWhoHaventUpdatedInALongTime = function() {
   var now = new Date().getTime();

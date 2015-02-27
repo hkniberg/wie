@@ -2,17 +2,18 @@
   <div class="col-xs-12" style="margin-top: 20px">
     <div class="row">
       <div class="panel-group" id="accordion">
+        
         <div class="panel panel-danger" id="panel1">
           
           <div class="panel-heading admin-panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-target="#collapseOne" href="#collapseOne">
+              <a data-toggle="collapse" data-target="#collapseOne" class="collapsed">
                 Administrate Places
               </a>
             </h4>
           </div>
           
-          <div id="collapseOne" class="panel-collapse collapse out">
+          <div id="collapseOne" class="panel-collapse collapse">
               <div class="panel-body">
                   {{> adminPlaces}}
               </div>
@@ -20,13 +21,13 @@
           
           <div class="panel-heading admin-panel-heading" style="margin-top: 10px">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-target="#collapseTwo" href="#collapseTwo">
+              <a data-toggle="collapse" data-target="#collapseTwo" class="collapsed">
                 Administrate People
               </a>
             </h4>
           </div>              
           
-          <div id="collapseTwo" class="panel-collapse collapse out">
+          <div id="collapseTwo" class="panel-collapse collapse">
               <div class="panel-body">
                   {{> adminPeople}}
               </div>
@@ -34,13 +35,13 @@
 
           <div class="panel-heading admin-panel-heading" style="margin-top: 10px">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-target="#collapseThree" href="#collapseThree">
+              <a data-toggle="collapse" data-target="#collapseThree" class="collapsed">
                 Administrate Chat
               </a>
             </h4>
           </div>              
           
-          <div id="collapseThree" class="panel-collapse collapse out">
+          <div id="collapseThree" class="panel-collapse collapse">
               <div class="panel-body">
                   {{> adminChat}}
               </div>

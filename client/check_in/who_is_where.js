@@ -1,12 +1,13 @@
+var freshnessThresholdMs = 30 * 60 * 1000; //30 minutes
+
 var peopleToShowAt = function(place) {
   return getPeopleAt(place._id).fetch();
 }
 
-Template.whoIsWhere.helpers({
-
- 
+Template.whoIsWhere.helpers({ 
   placesToShow: function() {
-    var places = getAllPlacesAndUnknown();
+    var places = getAllPlacesOrderedByFreshness().fetch();
+    places.push(unknownPlace);
     var placesToShow = _.filter(places, function(place) {
       return peopleToShowAt(place).length > 0   
     });
@@ -33,8 +34,23 @@ Template.place.helpers({
 })
 
 Template.person.helpers({
-  personClass: function() {
-    return isSelected(this) ? 'btn-success' : '';
+  personButtonClass: function() {
+    return isSelected(this) ? 'selected btn-success' : '';
+  },
+  
+  personNameClass: function() {
+    if (isSelected(this)) {
+      return "";
+    }
+    
+    var personTime = this.time;
+    var now = currentTime.get();
+    var ageMs = (now.getTime()) - personTime.getTime();
+    if (ageMs > freshnessThresholdMs) {
+      return "old";
+    } else {
+      return "fresh";
+    }
   },
   
   time: function() {
@@ -76,10 +92,8 @@ Template.whoIsWhere.rendered = function() {
 	
 	  //AHA, a person changed. Let's see if it was the placeId.
     changed: function(newPerson, oldPerson) {
-      if (newPerson.placeId != oldPerson.placeId) {
-        flash($("#nav-checkin"));
-        flash($("#buttonForPerson" + newPerson._id));                
-      }      
+      flash($("#nav-checkin"));
+      flash($("#buttonForPerson" + newPerson._id));                
     }
   })  
 };

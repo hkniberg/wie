@@ -23,7 +23,9 @@ Template.moveTo.helpers({
   },
 
   allPlaces: function() {
-    return getAllPlacesAndUnknown();
+    places = getAllPlaces().fetch();
+    places.push(unknownPlace);
+    return places;
   },
   
   checkInLabel: function() {

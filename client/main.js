@@ -12,10 +12,4 @@ unknownPlace = {
         icon: 'question.png'
 };
 
-getAllPlacesAndUnknown = function() {
-  places = getAllPlaces().fetch();
-  places.push(unknownPlace);
-  return places;
-}
-
 new WOW().init();

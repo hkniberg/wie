@@ -15,8 +15,16 @@
   padding: 2px 4px;
 }
 
-.btn-success {
+.selected {
   background-color: #5cb85c;
+}
+
+.fresh {
+  font-weight: bold;
+}
+
+.old {
+  color: gray; 
 }
 
 .panel-info {
@@ -31,6 +39,7 @@
   padding: 2px;
 }
 
+
 .panel-heading a:after {
     font-family:'Glyphicons Halflings';
     content:"\e114";
@@ -40,6 +49,7 @@
 .panel-heading a.collapsed:after {
     content:"\e080";
 }
+
 .panel-body {
   padding: 4px;
 }

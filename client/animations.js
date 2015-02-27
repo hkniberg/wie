@@ -3,7 +3,7 @@ flash = function(element) {
     element.addClass("animated bounce");
     setTimeout(function() {
       element.removeClass("animated bounce");
-    }, 1000)
+    }, 2000)
   }
 }
 flashEnabled = false;
