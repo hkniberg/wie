@@ -16,33 +16,17 @@ if (People.find().count() === 0) {
   People.insert({
     name: 'Joe',
     placeId: cabinId,
-    time: new Date(now - 1 * 60 * 1000), 
-    position: {  
-      lat: 63.3886602,
-      lng: 13.1550247,
-      time: new Date(now - 1 * 1000)
-    }
-    
+    time: new Date(now - 1 * 60 * 1000)
   });
   People.insert({
     name: 'Henrik',
     placeId: cabinId,
-    time: new Date(now - 5 * 60 * 1000),
-    position: {
-      lat: 63.3846602,
-      lng: 13.1510247,
-      time: new Date(now - 5 * 60 * 1000)
-    }
+    time: new Date(now - 5 * 60 * 1000)
   });
   People.insert({
     name: 'Lisa',
     placeId: slopeId,
-    time: new Date(now - 30 * 60 * 1000),
-    position: {
-      lat: 63.3816602,
-      lng: 13.1500247,
-      time: new Date(now - 90 * 60 * 1000)
-    }
+    time: new Date(now - 30 * 60 * 1000)
   });
   People.insert({
     name: 'Jenny',
