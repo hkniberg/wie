@@ -1,4 +1,4 @@
-if (People.find().count() === 0) {
+addDefaultData = function() {
   var now = new Date().getTime();
   
 
@@ -54,5 +54,10 @@ if (People.find().count() === 0) {
     text: 'This is cool!',
     time: new Date(now - 70 * 60 * 1000)
   });
+}
+
+
+if (People.find().count() === 0) {
+  addDefaultData();
   
 }
