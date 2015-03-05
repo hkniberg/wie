@@ -17,3 +17,5 @@ mdg:geolocation
 mrt:googlemaps
 practicalmeteor:chai
 mike:mocha
+accounts-password
+accounts-ui

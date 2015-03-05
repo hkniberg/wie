@@ -11,3 +11,6 @@ Meteor.publish("messages", function() {
   return Messages.find({time: {$gt: oldestTime}}, {sort: {time: 1}});
 });
 
+Meteor.publish("gangs", function() {
+  return Gangs.find({}, {sort: {name: 1}});
+});

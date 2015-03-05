@@ -1,6 +1,9 @@
 addDefaultData = function() {
   var now = new Date().getTime();
   
+  
+
+
 
   var cabinId = Places.insert({
     name: 'cabin',

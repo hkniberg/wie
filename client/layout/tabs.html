@@ -1,5 +1,7 @@
 <template name="tabs">
   
+  {{#if currentUser}}
+  
   <div role="tabpanel">
 
     <ul class="nav nav-tabs" role="tablist">
@@ -14,4 +16,12 @@
     </div>
 
   </div>
+  {{else}}
+    You need to log in.
+    
+    {{> loginButtons}}
+  
+  {{/if}}
+
+
 </template>
