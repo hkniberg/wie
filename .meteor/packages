@@ -19,3 +19,4 @@ practicalmeteor:chai
 mike:mocha
 accounts-password
 accounts-ui
+velocity:console-reporter

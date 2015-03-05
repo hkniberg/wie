@@ -1,37 +1,56 @@
+var assert = chai.assert;
+
 if (!(typeof MochaWeb === 'undefined')){
   MochaWeb.testOnly(function(){    
+    
     beforeEach(function() {
       People.remove({});
       Places.remove({});
       Messages.remove({});
-      Meteor.users.remove({});
+      Gangs.remove({});
       addDefaultData();
     });
     
-    describe("Admin", function() {
-      it("Add a person", function() {
-        chai.assert(!doesPersonExist("Frank"));
-        Meteor.call("createPerson", "Frank"); 
-        chai.assert(doesPersonExist("Frank"));          
-      });
-      /*
+    describe("Admin", function() {            
       it("Create Gang", function() {
-        chai.assert(!doesGangExist("TheDudes"));  
-        Meteor.call("createGang", "TheDudes", "xyz");
-        chai.assert(doesGangExist("TheDudes"));  
+        assert(!doesGangExist("TheDudes"));  
+        var gangId = createGang("TheDudes", "xyz");
+        assert(gangId);
+        assert(doesGangExist("TheDudes"));  
+        assert.equal(1, Gangs.find({_id: gangId}).count());
       });
-      */
-      /*
-      it("Has session", function() {
-        Accounts.createUser({username: "joe2", password: "xyz"});
-        Meteor.loginWithPassword("joe2", "xyz");
-        chai.assert.equals("joe2", Meteor.call("whoAmI"));
+      
+      it("get person by ID", function() {
+        assert.notOk(getPerson("fakeId"));
+        var gangId = createGang("TheDudes", "xyz");
+        var personId = addPerson(gangId, "Henrik");   
+        assert(personId);
+        assert(getPerson(gangId, personId));
+      });
+      
+      it("Add/find/remove person", function() {
+        var gangId = createGang("TheDudes", "xyz");
+        assert.equal(0, getPeople(gangId).length);
         
-        //chai.assert(Meteor.userId());  
-        //chai.assert.equals("xyt", Meteor.user().username);  
+        var personId = addPerson(gangId, "Henrik");        
+        assert(personId),
+        assert.equal(1, getPeople(gangId).length);
+        
+        removePerson(gangId, personId);
+        assert.equal(0, getPeople(gangId).length);
       });
-      */
+      
+      it("Add/find/remove place", function() {
+        var gangId = createGang("TheDudes", "xyz");
+        assert.equal(0, getPlaces(gangId).length);
+        
+        var placeId = addPlace(gangId, "Bar");        
+        assert(placeId),
+        assert.equal(1, getPlaces(gangId).length);
+        
+        removePlace(gangId, placeId);
+        assert.equal(0, getPlaces(gangId).length);
+      });      
     });
   });
-
 }

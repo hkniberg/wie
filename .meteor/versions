@@ -76,6 +76,7 @@ twbs:bootstrap@3.3.1_2
 ui@1.0.5
 underscore@1.0.2
 url@1.0.3
+velocity:console-reporter@0.1.1
 velocity:core@0.4.5
 velocity:html-reporter@0.3.2
 velocity:node-soft-mirror@0.3.1

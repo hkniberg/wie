@@ -1,5 +1,7 @@
 if (!(typeof MochaWeb === 'undefined')){
+  /*
   MochaWeb.testOnly(function(){    
+    
     describe("Login", function() {
       it("Has session", function(done) {
         var time = new Date().getTime();
@@ -19,5 +21,6 @@ if (!(typeof MochaWeb === 'undefined')){
       
     });
   });
+  */
 
 }

@@ -10,5 +10,6 @@ Package.onUse(function (api) {
 	api.add_files("tests/mocha/client/loginTest.js",["client"]);
 	api.add_files("tests/mocha/client/selectionTest.js",["client"]);
 	api.add_files("tests/mocha/server/adminTest.js",["server"]);
+	api.add_files("tests/mocha/server/checkInTest.js",["server"]);
 	api.add_files("tests/mocha/server/serverInitTest.js",["server"]);
 });
