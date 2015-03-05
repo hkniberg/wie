@@ -1,6 +1,6 @@
 movePerson = function(gangId, personId, placeId) {
-  Gangs.update(
-    {_id: gangId, "people._id": personId},
-    {$set: {"people.$.placeId": placeId}}    
+  People.update(
+    {_id: personId, gangId: gangId},
+    {$set: {placeId: placeId}}    
   );
 }

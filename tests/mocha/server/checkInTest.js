@@ -20,11 +20,11 @@ if (!(typeof MochaWeb === 'undefined')){
     describe("Check in", function() {
       it("Move Henrik to Bar", function() {
         assert.equal(null, getPerson(skigang, henrik).placeId);
-        assert.equal(0, getPeopleAt(skigang, bar));
+        assert.equal(0, getPeopleAt(skigang, bar).count());
 
         movePerson(skigang, henrik, bar);
         assert.equal(bar, getPerson(skigang, henrik).placeId);
-        assert.equal(1, getPeopleAt(skigang, bar).length);
+        assert.equal(1, getPeopleAt(skigang, bar).count());
         
       });
            

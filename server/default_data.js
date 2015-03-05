@@ -1,20 +1,15 @@
 addDefaultData = function() {
   var now = new Date().getTime();
   
+  /*
   
-
-
-
-  var cabinId = Places.insert({
-    name: 'cabin',
-    icon: 'cabin.png'
-  });
+  var skigang = createGang("Skigang", "x");
   
-  var slopeId = Places.insert({
-    name: 'slope',
-    icon: 'ski.png'
-  });
+  var cabin = createPlace(skigang, "Cabin", "cabin.png");
+  var slope = createPlace(skigang, "Slope", "ski.png");
 
+  var joe = createPerson(skigang, "Joe");
+  movePerson(skigang, joe, )
 
   People.insert({
     name: 'Joe',
@@ -57,6 +52,7 @@ addDefaultData = function() {
     text: 'This is cool!',
     time: new Date(now - 70 * 60 * 1000)
   });
+  */
 }
 
 

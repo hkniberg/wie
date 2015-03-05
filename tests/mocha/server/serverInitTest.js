@@ -5,6 +5,7 @@ if (!(typeof MochaWeb === 'undefined')){
         chai.assert(Meteor.release);
       });
     });
+    /*
     
     describe("Default data", function() {
       it("should have Jenny", function(){
@@ -14,6 +15,7 @@ if (!(typeof MochaWeb === 'undefined')){
         chai.assert.notOk(doesPersonExist("Egbert"));
       });
     });
+    */
   });
  
  
