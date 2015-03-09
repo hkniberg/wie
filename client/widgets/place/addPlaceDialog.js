@@ -10,10 +10,37 @@ Template.addPlaceDialog.events({
     if (!name) {
       return;
     }
-    Meteor.call("createPlace", name);
+    var icon = $('#addPlaceForm input[type=radio]:checked').val();    
+    
+    Meteor.call("createPlace", name, icon);
     $('[name=newPlaceName]').val("");
     $('#addPlaceDialog').modal('hide');
   }
   
+
+})
+
+Template.addPlaceDialog.helpers({
+  'icons': function() {
+    return [
+      'beer.png', 'cabin.png', 'car.png', 'food.png', 'question.png', 'ski.png'
+    ];
+  },
+  
+  'iconChecked': function() {
+    if (this == "cabin.png") {
+      return "checked";
+    } else {
+      return ""
+    }
+  },
+  
+  'iconLabelActive': function() {
+    if (this == "cabin.png") {
+      return "active";
+    } else {
+      return ""
+    }
+  }  
 
 })

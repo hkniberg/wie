@@ -1,6 +1,10 @@
 <template name="placeWidget">
-  <div class="placeWidget">{{name}} 
-        
+  <div class="placeWidget">
+    {{#if icon}}
+      <img class="icon" src="place-icons/{{icon}}">
+    {{/if}}
+    {{name}} 
+            
     <span class="dropdown">
       <button class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="glyphicon glyphicon-collapse-down"></span>
@@ -8,6 +12,9 @@
       <ul class="dropdown-menu pull-right" >
         <li class="dropdown">
           <a id="renamePlaceButton" href="#"><span class="glyphicon glyphicon-pencil"></span>Rename {{name}}</a>
+        </li>
+        <li class="dropdown">
+          <a id="changeIconButton" href="#"><span class="glyphicon glyphicon-asterisk"></span>Change icon</a>
         </li>
         <li class="dropdown">
           <a id="removePlaceButton" href="#"><span class="glyphicon glyphicon-remove"></span>Remove {{name}}</a>

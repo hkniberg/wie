@@ -10,8 +10,8 @@ Template.renamePlaceDialog.events({
     if (!name) {
       return;
     }
-    var placeId = Session.get("selectedPlace")._id;
-    Meteor.call("renamePlace", placeId, name);
+    var place = Session.get("selectedPlace");
+    Meteor.call("updatePlace", place._id, name, place.icon);
     $('#renamePlaceDialog').modal('hide');
   }
   
