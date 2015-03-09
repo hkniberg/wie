@@ -5,8 +5,6 @@ if (!(typeof MochaWeb === 'undefined')){
   
   MochaWeb.testOnly(function(){    
     
-
-    
     beforeEach(function(done) {
       var time = new Date().getTime();
       username = "joe" + time + Math.floor(Math.random() * 100000);
@@ -34,7 +32,7 @@ if (!(typeof MochaWeb === 'undefined')){
         
         Meteor.loginWithPassword("wronguser", password, function(err, result) {
           if (!err) {
-            done("Hey, I was able to login with wrong username!");
+            return done("Hey, I was able to login with wrong username!");
           }
           done();
         });        
@@ -44,7 +42,7 @@ if (!(typeof MochaWeb === 'undefined')){
         
         Meteor.loginWithPassword(username, "wrongpassword", function(err, result) {
           if (!err) {
-            done("Hey, I was able to login with wrong password!");
+            return done("Hey, I was able to login with wrong password!");
           }
           done();
         });        
@@ -52,7 +50,7 @@ if (!(typeof MochaWeb === 'undefined')){
       
       it("Can login with right password", function(done) {           
         
-        Meteor.loginWithPassword(username, "xyz", function(err, result) {
+        Meteor.loginWithPassword(username, password, function(err, result) {
           if (err) return done("loginWithPassword failed: " + err);
 
           if (Meteor.user() == null) {
@@ -73,12 +71,7 @@ if (!(typeof MochaWeb === 'undefined')){
           });
         });            
       });
-    
-      /*
-      it("Creates a gang", function(done) {
-        
-      });
-      */
+
       
     });
     

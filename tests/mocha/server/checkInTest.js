@@ -7,7 +7,7 @@ if (!(typeof MochaWeb === 'undefined')){
       People.remove({});
       Places.remove({});
       Messages.remove({});
-      Gangs.remove({});
+      Meteor.users.remove({});
       //addDefaultData();
 
       skigang = createGang("Skigang", "xyz");

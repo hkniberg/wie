@@ -1,12 +1,12 @@
-createGang = function(gangName, ownerId) {
-  return Gangs.insert({
-    name: gangName,
-    ownerId: ownerId,
+createGang = function(gangName, password) {
+  return Accounts.createUser({
+    username: gangName,
+    password: password
   })
 };
 
 getGang = function(gangId) {
-  return Gangs.findOne({_id: gangId});
+  return Meteor.users.findOne({_id: gangId});
 }
 
 getPeopleAt = function(gangId, placeId) {

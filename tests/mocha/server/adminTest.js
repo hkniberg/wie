@@ -7,7 +7,7 @@ if (!(typeof MochaWeb === 'undefined')){
       People.remove({});
       Places.remove({});
       Messages.remove({});
-      Gangs.remove({});
+      Meteor.users.remove({});
       addDefaultData();
     });
     
@@ -32,7 +32,7 @@ if (!(typeof MochaWeb === 'undefined')){
         var gangId = createGang("TheDudes", "xyz");
         assert(gangId);
         assert(doesGangExist("TheDudes"));  
-        assert.equal(1, Gangs.find({_id: gangId}).count());
+        assert.equal(1, Meteor.users.find({_id: gangId}).count());
       });
       
       it("get person by ID", function() {
