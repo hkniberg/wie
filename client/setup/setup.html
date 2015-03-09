@@ -16,17 +16,35 @@
 
     <div class="col-xs-6">
         <h2>Places</h2>      
-        <button id="addPlaceButton">+</button>
+        {{#each places}}
+          {{>placeWidget}}
+        {{/each}}
+        {{>addPlaceButton}}
     </div>
   </div>
   
-  <div class="row">
+  <div class="row" style="margin-top: 10px">
     <div class="col-xs-12">
-      Welcome to your gang! Start by adding some people and places.
+      <div class="alert alert-info">
+        {{#if hasNothing}}
+          Welcome to your gang! Start by adding some people and places.
+        {{/if}}
+      
+        {{#if hasPeopleOnly}}
+          OK, now add some places.
+        {{/if}}
+      
+        {{#if hasPlacesOnly}}
+          OK, now add some people.
+        {{/if}}
+
+        {{#if hasPeopleAndPlaces}}
+          <button class="btn btn-success">I'm done adding people &amp; places for now!</button>
+        {{/if}}
+      </div>
+      
     </div>
   </div>
-  
-  {{>addPersonDialog}}
     
 </template>
 

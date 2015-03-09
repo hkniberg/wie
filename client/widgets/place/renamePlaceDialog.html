@@ -1,0 +1,21 @@
+<template name="renamePlaceDialog">
+  <div class="modal fade" id="renamePlaceDialog" tabindex="1">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+          <h4 class="modal-title">Rename {{name}}</h4>
+        </div>
+        
+        <div class="modal-body">
+          <form id="renamePlaceForm">
+            <input type="text" name="updatedPlaceName" value="{{name}}">
+            <button type="button" id="submitButton" class="btn btn-primary">Rename</button>
+          </form>
+        </div>
+        
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</template>

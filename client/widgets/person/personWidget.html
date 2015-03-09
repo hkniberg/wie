@@ -1,5 +1,5 @@
 <template name="personWidget">
-  <div>{{name}} 
+  <div class="personWidget">{{name}} 
         
     <span class="dropdown">
       <button class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -7,10 +7,10 @@
       </button>
       <ul class="dropdown-menu" >
         <li class="dropdown">
-          <a id="renamePersonButton" href="#"><span class="glyphicon glyphicon-pencil"></span>Change name</a>
+          <a id="renamePersonButton" href="#"><span class="glyphicon glyphicon-pencil"></span>Rename {{name}}</a>
         </li>
-        <li>
-          <a id="removePersonButton" href="#"><span class="glyphicon glyphicon-remove"></span>Remove</a>
+        <li class="dropdown">
+          <a id="removePersonButton" href="#"><span class="glyphicon glyphicon-remove"></span>Remove {{name}}</a>
         </li>
       </ul>
     </span>

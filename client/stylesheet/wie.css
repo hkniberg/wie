@@ -120,3 +120,20 @@
 .admin-panel {
   padding: 2px 0px 10px 0px;
 }
+
+.personWidget, .placeWidget {
+  font-size: 20px;
+}
+
+.pull-right .dropdown-menu:after {
+    left: auto;
+    right: 13px;
+}
+.pull-right .dropdown-menu {
+    left: auto;
+    right: 0;
+}
+
+.dropdown-menu {
+  font-size: 18px;
+}

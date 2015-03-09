@@ -1,4 +1,8 @@
 Template.addPersonDialog.events({
+  'shown.bs.modal #addPersonDialog': function(e) {
+    $('[name=newPersonName]').focus();
+  },  
+  
   'submit, click #submitButton': function(e) {
     e.preventDefault();
     var name = $('[name=newPersonName]').val();
@@ -9,13 +13,7 @@ Template.addPersonDialog.events({
     Meteor.call("createPerson", name);
     $('[name=newPersonName]').val("");
     $('#addPersonDialog').modal('hide');
-  },
-  
-  'shown.bs.modal #addPersonDialog': function(e) {
-    $('[name=newPersonName]').focus();
   }
-})
-
-Template.addPersonDialog.helpers({
+  
 
 })
