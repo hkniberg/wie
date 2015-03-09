@@ -1,12 +1,26 @@
 <template name="create">
-  Create new gang
-  <form>
-    <label>Gang name</label>
-    <input type="text" name="gangName">
-    <label>Password</label>
-    <input type="password" name="password">
-    <button type="submit">Create</button>
-  </form>
-  {{errorMessage}}
+  
+  <div class="row">
+    <div class="col col-xs-12">
+      <h2>Create new gang</h2>
+      
+      <form>
+        <div class="form-group">
+          <label for="gangName">Gang name:</label>
+          <input type="text" id="gangName">
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Create</button>
+      </form>
+      
+      <div class="text-danger">
+        {{errorMessage}}
+      </div>
+    </div>
+  </div>
+  
 
 </template>

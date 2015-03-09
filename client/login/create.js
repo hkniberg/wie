@@ -3,8 +3,8 @@ var errorMessage = new ReactiveVar();
 Template.create.events({
   'submit form': function(e) {
     e.preventDefault();
-    var gangName = $("[name=gangName]").val();
-    var password = $("[name=password]").val();
+    var gangName = $("#gangName").val();
+    var password = $("#password").val();
     Accounts.createUser({username: gangName, password: password}, function(err) {
       if (err) {
         errorMessage.set("Could not create the gang!");        
