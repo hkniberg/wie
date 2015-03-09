@@ -2,6 +2,11 @@ var joe = {_id: 25, name: "Joe", place_id: null};
 
 if (!(typeof MochaWeb === 'undefined')){
   MochaWeb.testOnly(function(){
+    
+    beforeEach(function() {
+      clearSelection();   
+    });      
+    
     describe("selection", function(){
       it("should be empty initially", function(){
         chai.assert.equal(getSelectedPeople().length, 0);
