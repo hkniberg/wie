@@ -1,0 +1,25 @@
+<template name="top">
+  <div class="row">
+    <div class="col col-xs-12">
+      <h3>
+        {{gangName}}
+        <span class="dropdown">
+          <button class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-collapse-down"></span>
+          </button>
+          <ul class="dropdown-menu" >
+            <li class="dropdown">
+              <a id="setupGangButton" href="#"><span class="glyphicon glyphicon-cog"></span>Edit people &amp; places</a>
+            </li>
+            <li class="dropdown">
+              <a id="renameGangButton" href="#"><span class="glyphicon glyphicon-pencil"></span>Rename {{gangName}}</a>
+            </li>
+            <li class="dropdown">
+              <a id="removeGangButton" href="#"><span class="glyphicon glyphicon-remove"></span>Remove {{gangName}}</a>
+            </li>
+          </ul>
+        </span>        
+      </h3>
+    </div>
+  </div>
+</template>

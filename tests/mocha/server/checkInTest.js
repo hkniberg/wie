@@ -18,9 +18,9 @@ if (!(typeof MochaWeb === 'undefined')){
           return gangId;
         } 
 
-        bar = addPlace("Bar");
-        slope = addPlace("Slope");
-        henrik = addPerson("Henrik"); 
+        bar = Meteor.call("createPlace", "Bar");
+        slope = Meteor.call("createPlace", "Slope");
+        henrik = Meteor.call("createPerson", "Henrik"); 
       });
     
       afterEach(function() {

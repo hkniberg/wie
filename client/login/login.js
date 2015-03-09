@@ -9,7 +9,11 @@ Template.login.events({
       if (err) {
         errorMessage.set("Login failed!");        
       } else {
-        Router.go('/setup');
+        if (hasPeople() && hasPlaces()) {
+          Router.go('/view');          
+        } else {
+          Router.go('/setup');
+        }
       }
     })
   }

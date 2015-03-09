@@ -1,5 +1,13 @@
+getGangName = function() {
+  if (!Meteor.user()) {
+    return "";
+  } else {
+    return Meteor.user().username;    
+  }  
+}
+
 Template.registerHelper("gangName", function() {
-  return Meteor.user().username;
+  return getGangName();
 });
 
 Template.registerHelper("people", function() {

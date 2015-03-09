@@ -1,14 +1,20 @@
 Template.setup.helpers({
   'hasNothing': function() {
-    return getPeople().count() == 0 && getPlaces().count() == 0;
+    return !hasPeople() && !hasPlaces();
   },
   'hasPeopleOnly': function() {
-    return getPeople().count() > 0 && getPlaces().count() == 0;
+    return hasPeople() && !hasPlaces();
   },
   'hasPlacesOnly': function() {
-    return getPeople().count() == 0 && getPlaces().count() > 0;
+    return hasPlaces() && !hasPeople();
   },
   'hasPeopleAndPlaces': function() {
-    return getPeople().count() > 0 && getPlaces().count() > 0;
+    return hasPeople() && hasPlaces();
   }
 });
+
+Template.setup.events({
+  'click #doneButton': function(e) {
+    Router.go('/view');
+  }
+})

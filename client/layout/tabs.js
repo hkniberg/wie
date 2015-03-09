@@ -14,8 +14,6 @@ Template.tabs.events({
       scrollChatToBottom();
       setAllMessagesRead();
       
-    } else if (href.indexOf('tab-admin') > -1) {
-      currentTab.set('admin');    
-    }
+    } 
   }
 })

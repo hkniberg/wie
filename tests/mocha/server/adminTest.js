@@ -1,5 +1,6 @@
 var assert = chai.assert;
 var oldUserIdFunction;
+var gangId;
 
 if (!(typeof MochaWeb === 'undefined')){
   MochaWeb.testOnly(function(){    
@@ -14,7 +15,7 @@ if (!(typeof MochaWeb === 'undefined')){
         Messages.remove({});
         Meteor.users.remove({});
       
-        var gangId = createGang("TheDudes", "xyz");
+        gangId = createGang("TheDudes", "xyz");
         assert(doesGangExist("TheDudes"));  
         oldUserIdFunction = Meteor.userId;
         Meteor.userId = function() {
@@ -31,7 +32,7 @@ if (!(typeof MochaWeb === 'undefined')){
       
       it("get person by ID", function() {
         assert.notOk(getPerson("fakeId"));
-        var personId = addPerson("Henrik");   
+        var personId = Meteor.call("createPerson", "Henrik");   
         assert(personId);
         assert(getPerson(personId));
       });
@@ -39,24 +40,51 @@ if (!(typeof MochaWeb === 'undefined')){
       it("Add/find/remove person", function() {
         assert.equal(0, getPeople().count());
         
-        var personId = addPerson("John");        
+        var personId = Meteor.call("createPerson", "John");        
         assert(personId),
         assert.equal(1, getPeople().count());
         
-        removePerson(personId);
+        Meteor.call("removePerson", personId);
         assert.equal(0, getPeople().count());
       });
       
       it("Add/find/remove place", function() {
         assert.equal(0, getPlaces().count());
         
-        var placeId = addPlace("Bar");        
+        var placeId = Meteor.call("createPlace", "Bar");        
         assert(placeId),
         assert.equal(1, getPlaces().count());
         
-        removePlace(placeId);
+        Meteor.call("removePlace", placeId);
         assert.equal(0, getPlaces().count());
-      });      
+      });  
+      
+      it("Rename gang", function() {
+        assert.equal("TheDudes", getGang(gangId).username);
+        Meteor.call("renameGang", "TheClowns");
+        assert.equal("TheClowns", getGang(gangId).username);
+        
+      });    
+
+      it("Can't rename gang to existing name", function() {
+        createGang("TheClowns", "xyz");        
+
+        assert.equal("TheDudes", getGang(gangId).username);
+        try {
+          Meteor.call("renameGang", "TheClowns");          
+        } catch (err) {
+          //good!
+        }
+        assert.equal("TheDudes", getGang(gangId).username);
+        
+      });    
+      
+      it("Remove gang", function() {
+        assert.ok(getGang(gangId));
+        Meteor.call("removeGang");          
+        assert.notOk(getGang(gangId));        
+      });          
+
     });
   });
 }
