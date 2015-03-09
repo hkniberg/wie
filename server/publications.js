@@ -1,9 +1,7 @@
 Meteor.publish("people", function() {
   if (this.userId) {
-    console.log("publish people for " + this.userId);
     return People.find({gangId: this.userId}, {sort: {name: 1}});    
   } else {
-    console.log("publish people - not logged in!");
     this.ready();
   }  
 });

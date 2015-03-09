@@ -3,6 +3,9 @@ Template.registerHelper("gangName", function() {
 });
 
 Template.registerHelper("people", function() {
-  console.log("helper: people");
   return getPeople();
+});
+
+Template.registerHelper("places", function() {
+  return getPlaces();
 });
