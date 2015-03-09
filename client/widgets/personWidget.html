@@ -1,3 +1,18 @@
 <template name="personWidget">
-  <div>{{name}} <button>...</button></div>
+  <div>{{name}} 
+        
+    <span class="dropdown">
+      <button class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="glyphicon glyphicon-collapse-down"></span>
+      </button>
+      <ul class="dropdown-menu" >
+        <li class="dropdown">
+          <a id="renamePersonButton" href="#"><span class="glyphicon glyphicon-pencil"></span>Change name</a>
+        </li>
+        <li>
+          <a id="removePersonButton" href="#"><span class="glyphicon glyphicon-remove"></span>Remove</a>
+        </li>
+      </ul>
+    </span>
+  </div>
 </template>
