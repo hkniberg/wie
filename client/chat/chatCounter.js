@@ -1,12 +1,12 @@
-unreadChatCount = new ReactiveVar();
+//unreadChatCount = new ReactiveVar();
 
 Template.chatCounter.helpers({
-  unreadMessageCount: function() {
-    var count = unreadChatCount.get();
-    if (count == 0) {
-      return null;
+  unreadMessageCount: function() {    
+    var unreadCount = countMessagesAfterTime(getLastReadMessageTime());
+    if (unreadCount > 0) {
+      return unreadCount;
     } else {
-      return count;
+      return "";
     }
   }
 })

@@ -7,20 +7,30 @@ scrollChatToBottom = function() {
 
 
 
-//a number, not a Date object
 getLastReadMessageTime = function() {
-	var result = localStorage.getItem("lastReadMessageTime");
-  return result;
+	var date = Session.get("lastReadMessageTime");
+  if (!date) {
+    var time = localStorage.getItem("lastReadMessageTime");
+    if (time) {
+      date = new Date(time);
+      Session.set("lastReadMessageTime", date);
+    } else {
+      date = null;
+    }     
+  }
+  return date;
 }
 
-//a number, not a Date object
-setLastReadMessageTime = function(time) {
-	localStorage.setItem("lastReadMessageTime", time);
+setLastReadMessageTime = function(date) {
+  if (date) {
+  	localStorage.setItem("lastReadMessageTime", date.getTime());    
+  }  
+  Session.set("lastReadMessageTime", date);
 }
 
 setLastReadMessage = function(message) {
   if (message && message.time) {
-    setLastReadMessageTime(message.time.getTime());
+    setLastReadMessageTime(message.time);
   } else {
     setLastReadMessageTime(null);
   }
@@ -35,6 +45,7 @@ isMessageUnread = function(message) {
   }
 }
 
+/*
 increaseUnreadChatCount = function() {
   var unreadCount = unreadChatCount.get();
   if (!unreadCount) {
@@ -44,9 +55,10 @@ increaseUnreadChatCount = function() {
   }
   unreadChatCount.set(unreadCount);
 }
+*/
 
 setAllMessagesRead = function() {
-  unreadChatCount.set(0);
+  //unreadChatCount.set(0);
   var lastMessage = getLastChatMessage();
   setLastReadMessage(lastMessage);
 }
@@ -106,6 +118,8 @@ Template.chat.rendered = function() {
 	  
 	  //AHA, a chat message was added
     added: function(message) {
+      console.log("message added: " + message);
+      
       flash($("#nav-chat"));
 
       var isUnread = isMessageUnread(message);
@@ -117,11 +131,14 @@ Template.chat.rendered = function() {
           //... but I'm seeing it right now, so I don't need to update the unread count.
   	    }                
       } else {
+        /*
         if (isUnread) {
+          console.log(".... it's unread! " + message);
           //I'm not watching the chat, and this is a new message,
           //so I better increase the unread count.
           increaseUnreadChatCount();
         }
+        */
       }	  
     }
   })  

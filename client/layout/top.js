@@ -10,6 +10,14 @@ Template.top.events({
     $('#renameGangDialog').modal('show');
   },
   
+  'click #logoutButton': function() {
+    //TODO fix this ugly timing hack
+    Meteor.setTimeout(function() {
+      Meteor.logout();
+      Router.go("/");      
+    },100);
+  },
+  
   'click #removeGangButton': function() {
     sweetAlert({   
       title: "Kill " + getGangName() + "?",  
