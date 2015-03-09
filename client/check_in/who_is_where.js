@@ -90,10 +90,10 @@ Template.person.events({
 Template.whoIsWhere.rendered = function() {
   getPeople().observe({
 	
-	  //AHA, a person changed. Let's see if it was the placeId.
+	  //AHA, a person changed. Flash it.
     changed: function(newPerson, oldPerson) {
       flash($("#nav-checkin"));
-      flash($("#buttonForPerson" + newPerson._id));                
+      flash($("#buttonForPerson" + oldPerson._id));                
     }
   })  
 };

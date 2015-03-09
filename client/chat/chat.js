@@ -118,8 +118,6 @@ Template.chat.rendered = function() {
 	  
 	  //AHA, a chat message was added
     added: function(message) {
-      console.log("message added: " + message);
-      
       flash($("#nav-chat"));
 
       var isUnread = isMessageUnread(message);

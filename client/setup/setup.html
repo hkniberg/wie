@@ -1,13 +1,13 @@
 <template name="setup">
   <div class="row">
     <div class="col-xs-12">
-      <h1>{{gangName}} setup</h1>
+      <h3>{{gangName}} setup</h3>
     </div>
   </div>
   
   <div class="row">
     <div class="col-xs-6">
-        <h2>People</h2>
+        <h4>People</h4>
         {{#each people}}
           {{>personWidget}}
         {{/each}}
@@ -15,7 +15,7 @@
     </div>
 
     <div class="col-xs-6">
-        <h2>Places</h2>      
+        <h4>Places</h4>      
         {{#each places}}
           {{>placeWidget}}
         {{/each}}
