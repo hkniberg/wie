@@ -61,7 +61,7 @@ setSavedSenderName = function(name) {
 
 Template.chat.helpers({    
   people: function() {
-    return getAllPeople();
+    return getPeople();
   },
   
   chatMessages: function() {

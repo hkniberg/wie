@@ -23,7 +23,7 @@ Template.moveTo.helpers({
   },
 
   allPlaces: function() {
-    places = getAllPlaces().fetch();
+    places = getPlaces().fetch();
     places.push(unknownPlace);
     return places;
   },

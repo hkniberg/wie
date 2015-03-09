@@ -88,7 +88,7 @@ Template.person.events({
 });
 
 Template.whoIsWhere.rendered = function() {
-  getAllPeople().observe({
+  getPeople().observe({
 	
 	  //AHA, a person changed. Let's see if it was the placeId.
     changed: function(newPerson, oldPerson) {

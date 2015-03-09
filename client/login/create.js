@@ -9,7 +9,9 @@ Template.create.events({
       if (err) {
         errorMessage.set("Could not create the gang!");        
       } else {
-        Router.go('/#' + gangName);
+        
+        
+        Router.go('/setup');
       }
     });
   }

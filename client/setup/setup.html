@@ -1,0 +1,34 @@
+<template name="setup">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>{{gangName}} setup</h1>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-6">
+        <h2>People</h2>
+        <form id="addPersonForm">
+          <input type="text" name="newPersonName" placeholder="name">
+        </form>
+        <button id="addPersonButton">+</button>
+        {{#each people}}
+          {{>personSetup}}
+        {{/each}}
+    </div>
+
+    <div class="col-xs-6">
+        <h2>Places</h2>      
+        <button id="addPlaceButton">+</button>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-12">
+      Welcome to your gang! Start by adding some people and places.
+    </div>
+  </div>
+    
+</template>
+
+

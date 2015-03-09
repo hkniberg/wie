@@ -9,7 +9,7 @@ updatePersonRenameField = function() {
 
 Template.adminPeople.helpers({
   'people': function() {
-    return getAllPeople();
+    return getPeople();
   },
   'defaultPersonName': function() {
     var firstPerson = getFirstPerson();

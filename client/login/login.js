@@ -9,7 +9,7 @@ Template.login.events({
       if (err) {
         errorMessage.set("Login failed!");        
       } else {
-        Router.go('/#' + gangName);
+        Router.go('/setup');
       }
     })
   }

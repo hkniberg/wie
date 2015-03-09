@@ -36,7 +36,7 @@ updateSelectedIcon = function() {
 
 Template.adminPlaces.helpers({
   'places': function() {
-    return getAllPlaces();
+    return getPlaces();
   },
   'icons': function() {
     return [
