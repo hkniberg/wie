@@ -4,11 +4,13 @@ scrollChatToBottom = function() {
   }, 100);
 }
 
+/*
 giveFocusToChatText = function() {
   setTimeout(function() {
     $('#chatText').focus();
   }, 100);
 }
+*/
 
 
 getLastReadMessageTime = function() {
