@@ -60,22 +60,31 @@ if (!(typeof MochaWeb === 'undefined')){
       });  
       
       it("Rename gang", function() {
-        assert.equal("TheDudes", getGang(gangId).username);
+        assert.equal("thedudes", getGang(gangId).username);
+        assert.equal("TheDudes", getGang(gangId).profile.gangName);
         Meteor.call("renameGang", "TheClowns");
-        assert.equal("TheClowns", getGang(gangId).username);
+        assert.equal("theclowns", getGang(gangId).username);
+        assert.equal("TheClowns", getGang(gangId).profile.gangName);
         
       });    
 
       it("Can't rename gang to existing name", function() {
         createGang("TheClowns", "xyz");        
 
-        assert.equal("TheDudes", getGang(gangId).username);
+        assert.equal("thedudes", getGang(gangId).username);
+        assert.equal("TheDudes", getGang(gangId).profile.gangName);
         try {
           Meteor.call("renameGang", "TheClowns");          
         } catch (err) {
           //good!
         }
-        assert.equal("TheDudes", getGang(gangId).username);
+        try {
+          Meteor.call("renameGang", "theclowns");          
+        } catch (err) {
+          //good!
+        }
+        assert.equal("thedudes", getGang(gangId).username);
+        assert.equal("TheDudes", getGang(gangId).profile.gangName);
         
       });    
       

@@ -2,7 +2,7 @@ getGangName = function() {
   if (!Meteor.user()) {
     return "";
   } else {
-    return Meteor.user().username;    
+    return Meteor.user().profile.gangName;    
   }  
 }
 
@@ -21,3 +21,7 @@ Template.registerHelper("people", function() {
 Template.registerHelper("places", function() {
   return getPlaces();
 });
+
+isEmpty = function(string) {
+  return !string || string.trim().length == 0;
+};

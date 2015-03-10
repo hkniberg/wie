@@ -7,7 +7,7 @@ if (!(typeof MochaWeb === 'undefined')){
     
     beforeEach(function(done) {
       var time = new Date().getTime();
-      username = "joe" + time + Math.floor(Math.random() * 100000);
+      username = "Joe" + time + Math.floor(Math.random() * 100000);
       password = "xyz";
       
       Accounts.createUser({username: username, password: password}, function(err) {
@@ -46,7 +46,7 @@ if (!(typeof MochaWeb === 'undefined')){
           }
           done();
         });        
-      });
+      });            
       
       it("Can login with right password", function(done) {           
         
@@ -71,6 +71,20 @@ if (!(typeof MochaWeb === 'undefined')){
           });
         });            
       });
+      
+      /*
+      
+      it("Is case-insensitive when logging in", function(done) {           
+        
+        Meteor.loginWithPassword(username.toUpperCase(), password, function(err, result) {
+          if (err) return done("loginWithPassword failed for " + username.toUpperCase() + ": " + err);
+          Meteor.loginWithPassword(username.toLowerCase(), password, function(err, result) {
+            if (err) return done("loginWithPassword failed for " + username.toLowerCase() + ": " + err);
+            done()
+          });            
+        });            
+      });
+      */
 
       
     });

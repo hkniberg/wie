@@ -1,0 +1,19 @@
+<template name="start">
+  <div class="startPage">
+    <div class="row">
+      <div class="col col-xs-12 text-center">
+        {{>banner}}
+        
+          <button style="margin: 10px" class="btn btn-primary btn-block" id="login">Open existing gang</button>
+          <button style="margin: 10px" class="btn btn-primary btn-block" id="create">Create new gang</button>  
+        
+          {{#if showExample}}
+            <button class="btn btn-link" id="hideExample">Hide the example</button>        
+            <img style="margin: auto" align="center" src="example.png" class="img-responsive" alt="Example">
+          {{else}}
+            <button class="btn btn-link" id="showExample">Show me an example!</button>        
+          {{/if}}                
+      </div>
+    </div>
+  </div>
+</template>

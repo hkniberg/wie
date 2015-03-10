@@ -1,7 +1,8 @@
 createGang = function(gangName, password) {
   return Accounts.createUser({
-    username: gangName,
-    password: password
+    username: gangName.toLowerCase(),
+    password: password,
+    profile: {gangName: gangName}
   })
 };
 
