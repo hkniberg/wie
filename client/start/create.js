@@ -47,6 +47,10 @@ Template.create.events({
     });
   },
   
+  'click #backToStartPage': function(e) {
+    Router.go('/');
+  },
+  
   'keypress, click': function(e) {
     errorMessage.set(null);    
   }  

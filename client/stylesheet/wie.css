@@ -138,7 +138,13 @@
 }
 
 .startPage {
-  max-width: 300px;
+  max-width: 400px;
   margin-left: auto;
   margin-right: auto;
 }
+
+#backToStartPage {
+ margin-top: 20px;
+ padding-left: 0px; 
+}
+

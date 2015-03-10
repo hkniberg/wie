@@ -18,11 +18,14 @@
           <input class="form-control" type="password" id="password2">
         </div>
         <button class="btn btn-primary" type="submit">Create</button>
+        <span class="text-danger">
+          {{errorMessage}}
+        </span>
+        
       </form>
+
+      <button style="margin-top: 20px" class="btn btn-link" id="backToStartPage">Back to start page</button>
       
-      <div class="text-danger">
-        {{errorMessage}}
-      </div>
     </div>
   </div>
   

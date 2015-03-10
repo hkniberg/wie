@@ -14,11 +14,13 @@
           <input class="form-control" type="password" id="password">
         </div>
         <button class="btn btn-primary" type="submit">Login</button>
+        <span class="text-danger">
+          {{errorMessage}}
+        </span>
       </form>
       
-      <div class="text-danger">
-        {{errorMessage}}
-      </div>
+      <button class="btn btn-link" id="backToStartPage">Back to start page</button>
+      
     </div>
   </div>
 </template>

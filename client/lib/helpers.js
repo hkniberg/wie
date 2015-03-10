@@ -1,5 +1,5 @@
 getGangName = function() {
-  if (!Meteor.user()) {
+  if (!Meteor.user() || !Meteor.user().profile || !Meteor.user().profile.gangName) {
     return "";
   } else {
     return Meteor.user().profile.gangName;    

@@ -71,6 +71,8 @@ setSavedSenderName = function(name) {
   localStorage.setItem("savedSenderName", name);
 }
 
+var errorMessage = new ReactiveVar();
+
 Template.chat.helpers({    
   people: function() {
     return getPeople();
@@ -86,7 +88,10 @@ Template.chat.helpers({
   
   time: function() {
     return moment(this.time).format("HH:mm");    
-  }
+  },
+  errorMessage: function() {
+    return errorMessage.get();
+  }    
 });
 
 Template.chat.events({
@@ -98,13 +103,24 @@ Template.chat.events({
     e.preventDefault();
     var from = $("#chatSender").val();
     var text = $("#chatText").val();
+    if (isEmpty(from)) {
+      errorMessage.set("You need to set your name");
+      return;
+    } 
+    if (isEmpty(text)) {
+      return;
+    }
     
     if (from && text) {
-      Meteor.call("chat", from, text);   
+      Meteor.call("chat", from, text.trim());   
       $("#chatText").val("");   
       scrollChatToBottom();
     }
-  }
+  },
+  
+  'keypress, click': function(e) {
+    errorMessage.set(null);    
+  } 
 });
 
 
@@ -120,24 +136,14 @@ Template.chat.rendered = function() {
     added: function(message) {
       flash($("#nav-chat"));
 
-      var isUnread = isMessageUnread(message);
       if (currentTab.get() == "chat") {
         scrollChatToBottom();
-  	    if (isUnread) {
+  	    if (isMessageUnread(message)) {
   	      //I haven't seen this message before!
           setLastReadMessage(message);
           //... but I'm seeing it right now, so I don't need to update the unread count.
   	    }                
-      } else {
-        /*
-        if (isUnread) {
-          console.log(".... it's unread! " + message);
-          //I'm not watching the chat, and this is a new message,
-          //so I better increase the unread count.
-          increaseUnreadChatCount();
-        }
-        */
-      }	  
+      } 
     }
   })  
 };
