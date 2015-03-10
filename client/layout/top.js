@@ -2,7 +2,7 @@ Template.top.events({
   'click #setupGangButton': function() {
     //TODO fix this ugly timing hack
     Meteor.setTimeout(function() {
-      Router.go('/setup');      
+      Router.go('setup', {gangName: getGangName()});      
     }, 100);
   },
   

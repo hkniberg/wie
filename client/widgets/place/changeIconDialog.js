@@ -7,7 +7,6 @@ Template.changeIconDialog.events({
     e.preventDefault();
     var icon = "" + this;
     var place = Session.get("selectedPlace");
-    console.log("changing icon to " + icon);
     Meteor.call("updatePlace", place._id, place.name, icon);
     $('#changeIconDialog').modal('hide');
   }
@@ -50,8 +49,6 @@ Template.changeIconDialog.helpers({
       return "";
     }
     var icon = this;
-    
-    console.log("selectedPlace = " + selectedPlace.icon + ", this = " + this);
     
     if (icon == selectedPlace.icon) {
       return "active";

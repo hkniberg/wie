@@ -25,24 +25,28 @@
   
   <div class="row" style="margin-top: 10px">
     <div class="col-xs-12">
-      <div class="alert alert-info">
-        {{#if hasNothing}}
+      {{#if hasNothing}}
+        <div class="alert alert-info">
           Welcome to your gang! Start by adding some people and places.
-        {{/if}}
+        </div>
+      {{/if}}
       
-        {{#if hasPeopleOnly}}
+      {{#if hasPeopleOnly}}
+        <div class="alert alert-info">
           OK, now add some places.
-        {{/if}}
-      
-        {{#if hasPlacesOnly}}
+        </div>
+      {{/if}}
+    
+      {{#if hasPlacesOnly}}
+        <div class="alert alert-info">
           OK, now add some people.
-        {{/if}}
+        </div>
+      {{/if}}
 
-        {{#if hasPeopleAndPlaces}}
-          <button id="doneButton" class="btn btn-success">I'm done editing people &amp; places for now!</button>
-        {{/if}}
-      </div>
-      
+      {{#if hasPeopleAndPlaces}}
+        <button id="doneButton" class="btn btn-success">I'm done editing people &amp; places for now!</button>
+      {{/if}}
+
     </div>
   </div>
     

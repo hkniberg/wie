@@ -8,7 +8,7 @@ flash = function(element) {
         element.removeClass("animated bounce");
       }, 2000);
             
-    }, 200);
+    }, 100);
     
     //}
 }

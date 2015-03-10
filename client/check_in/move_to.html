@@ -2,26 +2,23 @@
   
   <div class="row">
     {{#if hasSelection}}    
+      <div class="row">
+        <button type="button" class="btn btn-link" id="reset-selection-button">clear selection</button>
+      </div>
       <h4>{{checkInLabel}}</h4>
-    {{/if}}
-    {{#unless hasSelection}}    
+      <div class="btn-group-vertical" role="group">
+        {{#each allPlaces}}
+          <button type="button" class="check-in-button btn btn-default {{checkInButtonClass}}" id="{{_id}}">
+            {{>placeLabel}}
+          </button>
+        {{/each}} 
+      </div> 
+      
+    {{else}}
       <h4><span class="glyphicon glyphicon-arrow-left"></span>Who are you with?</h4>
-    {{/unless}}
+    {{/if}}
     
-    <div class="btn-group-vertical" role="group">
-      {{#each allPlaces}}
-        <button type="button" class="check-in-button btn btn-default {{checkInButtonClass}}" id="{{_id}}">
-          {{>placeLabel}}
-        </button>
-      {{/each}} 
-    </div>
+
   </div>
-  
-  
-  {{#if hasSelection}}
-  <div class="row">
-    <button type="button" class="btn btn-link" id="reset-selection-button">clear selection</button>
-  </div>
-  {{/if}}
   
 </template>

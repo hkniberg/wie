@@ -6,6 +6,10 @@ getGangName = function() {
   }  
 }
 
+isLoggedIn = function() {
+  return Meteor.userId() != null;
+}
+
 Template.registerHelper("gangName", function() {
   return getGangName();
 });

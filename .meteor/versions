@@ -35,7 +35,7 @@ iron:router@1.0.7
 iron:url@1.0.7
 jquery@1.11.3
 json@1.0.2
-kevohagan:sweetalert@0.3.2
+kevohagan:sweetalert@0.4.2
 launch-screen@1.0.1
 less@1.0.12
 livedata@1.0.12
@@ -72,7 +72,7 @@ srp@1.0.2
 templating@1.0.11
 timmyg:wow@1.0.1
 tracker@1.0.5
-twbs:bootstrap@3.3.1_2
+twbs:bootstrap@3.3.2
 ui@1.0.5
 underscore@1.0.2
 url@1.0.3

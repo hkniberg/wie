@@ -15,6 +15,6 @@ Template.setup.helpers({
 
 Template.setup.events({
   'click #doneButton': function(e) {
-    Router.go('/view');
+    Router.go('tabs', {gangName: getGangName()});
   }
 })

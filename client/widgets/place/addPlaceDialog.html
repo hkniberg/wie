@@ -14,8 +14,8 @@
             <div class="btn-group" data-toggle="buttons">
               {{#each icons}}
                 <label class="btn btn-default iconButton {{iconLabelActive}} ">
-                  <input type="radio" name="icon" value="{{this}}" autocomplete="off" {{iconChecked}} >
-                  <img src="place-icons/{{this}}">
+                  <input class="form-control" type="radio" name="icon" value="{{this}}" autocomplete="off" {{iconChecked}} >
+                  <img src="/place-icons/{{this}}">
                 </label> 
               {{/each}}
             </div>               

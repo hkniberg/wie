@@ -11,7 +11,11 @@ Template.renameGangDialog.events({
       return;
     }
     //TODO graceful error handling if gang already exists.
-    Meteor.call("renameGang", name);
+    Meteor.call("renameGang", name, function(err) {
+      if (!err) {
+        Router.go('tabs', {gangName: name});
+      }
+    });
     $('#renameGangDialog').modal('hide');
   }
   
