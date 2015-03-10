@@ -13,7 +13,7 @@ Template.tabs.events({
       currentTab.set('chat');
       scrollChatToBottom();
       setAllMessagesRead();
-      
+      giveFocusToChatText();
     } 
   }
 })

@@ -1,10 +1,14 @@
 scrollChatToBottom = function() {
   setTimeout(function() {
     $("#chatMessages").scrollTop($("#chatMessages").prop("scrollHeight"));
-  }, 200);
+  }, 100);
 }
 
-
+giveFocusToChatText = function() {
+  setTimeout(function() {
+    $('#chatText').focus();
+  }, 100);
+}
 
 
 getLastReadMessageTime = function() {

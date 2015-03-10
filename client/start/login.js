@@ -1,5 +1,9 @@
 var errorMessage = new ReactiveVar();
 
+Template.login.rendered = function() {
+  $("#gangName").focus();
+}
+
 Template.login.events({
   'submit form': function(e) {
     e.preventDefault();

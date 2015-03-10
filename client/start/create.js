@@ -1,5 +1,9 @@
 var errorMessage = new ReactiveVar();
 
+Template.create.rendered = function() {
+  $("#gangName").focus();
+}
+
 Template.create.events({
   'submit form': function(e) {
     e.preventDefault();
