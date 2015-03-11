@@ -8,11 +8,17 @@
           <button style="margin: 10px" class="btn btn-primary btn-block" id="create">Create new gang</button>  
         
           {{#if showExample}}
-            <button class="btn btn-link" id="hideExample">Hide the example</button>        
+            <button class="btn btn-link" id="hideExample">Hide the example</button> 
+
             <img style="margin: auto" align="center" src="example.png" class="img-responsive" alt="Example">
+
+<p>We used this when skiing together 5 families. We kept dividing into small groups and wanted to know who was where in the ski system.</p>
+
+<p>All you do is click once to tell people who you are with and where you are headed (I usually do it while in the lift queue). Should be useful for other similar situations where a bunch of people are in the same general area and want to keep track of each other - like a bunch of friends at Disneyland or a conference resort.</p>
           {{else}}
-            <button class="btn btn-link" id="showExample">Show me an example!</button>        
-          {{/if}}                
+            <button class="btn btn-link btn-block" id="showExample">Show me an example!</button>             
+          {{/if}}   
+          {{> feedback}}                       
       </div>
     </div>
   </div>

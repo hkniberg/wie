@@ -80,7 +80,7 @@
   overflow: auto;
 }
 
-.chatSender {
+.xchatSender {
   font-weight: bold;
 }
 
@@ -97,7 +97,7 @@
   background-color: ivory;
 }
 
-.chat-form {
+.xchat-form {
   margin-top: 10px;
   font-size: 18px;
 }
@@ -146,5 +146,13 @@
 #backToStartPage {
  margin-top: 20px;
  padding-left: 0px; 
+ padding-right: 0px; 
 }
+
+#feedbackButton {
+  margin-top: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 

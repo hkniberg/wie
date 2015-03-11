@@ -22,7 +22,7 @@
   <div>
       <textarea id="chatText" class="form-control" placeholder="say something!"></textarea>
     
-    <button id="chatButton" class="btn btn-success btn-sm">
+    <button id="chatButton" class="btn btn-success">
       send
     </button>   
     <span class="text-danger">
@@ -30,6 +30,9 @@
     </span>                     
   </div>
   </form>
+  <small>
+  {{>feedback}}
+  </small>
 
 </template>
 
