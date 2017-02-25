@@ -1,3 +1,4 @@
+import {Session} from "meteor/session"
 Template.renamePersonDialog.events({
   'shown.bs.modal #renamePersonDialog': function(e) {
     $('[name=updatedPersonName]').focus();

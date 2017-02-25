@@ -1,3 +1,5 @@
+import {Session} from "meteor/session"
+
 Template.start.events({
   'click #login': function() {
     Router.go('login');

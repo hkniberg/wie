@@ -1,3 +1,5 @@
+import {Session} from "meteor/session"
+
 scrollChatToBottom = function() {
   setTimeout(function() {
     $("#chatMessages").scrollTop($("#chatMessages").prop("scrollHeight"));

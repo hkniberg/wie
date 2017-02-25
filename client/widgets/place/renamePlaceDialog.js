@@ -1,3 +1,4 @@
+import {Session} from "meteor/session"
 Template.renamePlaceDialog.events({
   'shown.bs.modal #renamePlaceDialog': function(e) {
     $('[name=updatedPlaceName]').focus();

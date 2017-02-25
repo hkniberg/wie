@@ -1,3 +1,4 @@
+import {Session} from "meteor/session"
 Template.placeWidget.events({
   'click #removePlaceButton': function() {
     Meteor.call("removePlace", this._id);

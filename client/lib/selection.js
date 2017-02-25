@@ -1,3 +1,5 @@
+import {Session} from "meteor/session"
+
 Session.setDefault('selectedPeople', []);
 
 select = function(person) {

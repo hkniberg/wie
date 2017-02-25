@@ -1,3 +1,4 @@
+import {Session} from "meteor/session"
 Template.changeIconDialog.events({
   'hidden.bs.modal #changeIconDialog': function(e) {
     $(".iconButton").removeClass("active");
