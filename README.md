@@ -2,7 +2,7 @@
 
 A simple web app to keep track of your buddies at the ski resort, theme park, conference, or the like.
 
-It's deployed at [where.meteor.com](http://where.meteor.com).
+It's deployed at [where.kniberg.com](http://where.kniberg.com).
 
 We used this when skiing together 5 families.
 We kept dividing into small groups and wanted to know who was where in the ski system.
